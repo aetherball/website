@@ -10,5 +10,5 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <DevTools />
     <App />
-  </StrictMode>
+  </StrictMode>,
 );
