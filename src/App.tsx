@@ -1,5 +1,3 @@
-import "./App.css";
-
 import { useAtom } from "jotai";
 
 import { locationAtom, routingEffect } from "./states/navigation";

@@ -11,5 +11,5 @@ export default function GamePage() {
   if (!subpath) return null;
   if (subpath === "calendar") return <CalendarPage game={game} />;
 
-  return "Unknown asdf";
+  return "Unknown path";
 }
