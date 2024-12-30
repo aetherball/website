@@ -1,6 +1,7 @@
-import { Highlight } from "@chakra-ui/react";
+import { Highlight, Text, Em } from "@chakra-ui/react";
 import { Title } from "@/components/layout/title";
 import { Description } from "@/components/layout/description";
+import { CharacterQuote } from "@/components/character/quote";
 import { games } from "@/routes";
 
 import type { PropsWithChildren } from "react";
@@ -24,6 +25,15 @@ export default function CalendarPage({ game }: Props) {
         </Highlight>
       </Title>
       <Description>{getDescription(game)}</Description>
+      <CharacterQuote
+        character="Dr. Ratio"
+        imgUrl="/hsr/stickers/dr-ratio/pillar.webp"
+        quote={
+          <Text>
+            No need to rush. Patience <Em>breeds</Em> success.
+          </Text>
+        }
+      />
     </>
   );
 }
