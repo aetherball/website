@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 
 import { locationAtom, routingEffect } from "./states/navigation";
 
+import Layout from "./components/Layout";
 import HomePage from "./pages/Home";
 import GamePage from "./pages/:game";
 import NotFoundPage from "./pages/NotFound";
@@ -12,9 +13,11 @@ function App() {
 
   useAtom(routingEffect);
 
-  if (pathname === "/") return <HomePage />;
-  if (pathname === "/not-found") return <NotFoundPage />;
-  return <GamePage />;
+  let body = <GamePage />;
+  if (pathname === "/") body = <HomePage />;
+  if (pathname === "/not-found") body = <NotFoundPage />;
+
+  return <Layout>{body}</Layout>;
 }
 
 export default App;
