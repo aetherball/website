@@ -3,6 +3,7 @@ import { atom } from "jotai";
 import { atomWithLocation } from "jotai-location";
 import { atomEffect } from "jotai-effect";
 import { games, paths, type Game, type Subpath } from "@/routes";
+import { getPathname } from "@/utils/pathname";
 
 export const locationAtom = atomWithLocation({
   replace: true,
@@ -39,7 +40,7 @@ export const gameAtom = atom<Game | undefined, [Game], void>(
 
     // Replace the game portion of the URL.
     // Invalid paths will be taken care of by the routingEffect.
-    const pathname = subpath ? `/${game}/${subpath}` : `/${game}`;
+    const pathname = getPathname(game, subpath);
     set(locationAtom, { pathname });
   },
 );
@@ -64,7 +65,7 @@ export const subpathAtom = atom<
 
     // Replace the subpath portion of the URL.
     // Invalid paths will be taken care of by the routingEffect.
-    const pathname = subpath ? `/${game}/${subpath}` : `/${game}`;
+    const pathname = getPathname(game, subpath);
     set(locationAtom, { pathname });
   },
 );
