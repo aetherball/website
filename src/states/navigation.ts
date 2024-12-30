@@ -7,13 +7,30 @@ export const locationAtom = atomWithLocation({
   replace: true,
 });
 
+export const pathFragmentsAtom = atom((get) => {
+  const { pathname } = get(locationAtom);
+  if (!pathname) return [];
+
+  return pathname.split("/").slice(1);
+});
+
+export const breadcrumbsAtom = atom((get) => {
+  const fragments = get(pathFragmentsAtom);
+
+  return fragments.map((fragment, index) => {
+    const path = "/" + fragments.slice(0, index + 1).join("/");
+    const isCurrent = index === fragments.length - 1;
+
+    return { path, fragment, isCurrent };
+  });
+});
+
 // /:game route matching, derived from the location
 export type Game = "hsr" | "zzz";
 export const gameAtom = atom<Game | null>((get) => {
-  const { pathname } = get(locationAtom);
-  if (!pathname) return null;
+  const fragments = get(pathFragmentsAtom);
 
-  const game = pathname.split("/")[1];
+  const game = fragments[0];
   if (game === "hsr" || game === "zzz") return game;
 
   return null;
@@ -22,10 +39,9 @@ export const gameAtom = atom<Game | null>((get) => {
 // /:game/:subpath route matching, same as above
 export type Subpath = "calendar";
 export const subpathAtom = atom<Subpath | null>((get) => {
-  const { pathname } = get(locationAtom);
-  if (!pathname) return null;
+  const fragments = get(pathFragmentsAtom);
 
-  const subpath = pathname.split("/")[2];
+  const subpath = fragments[1];
   if (subpath === "calendar") return subpath;
 
   return null;
