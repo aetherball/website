@@ -13,7 +13,7 @@ export function NavLocation() {
   // TODO: name mapping, menu dropdown at each level
 
   return (
-    <BreadcrumbRoot separator="/" size="lg">
+    <BreadcrumbRoot separator="/" size="lg" marginLeft={2}>
       {breadcrumbs.map(({ path, fragment, isCurrent }, index) =>
         isCurrent ? (
           <BreadcrumbCurrentLink key={index}>{fragment}</BreadcrumbCurrentLink>
