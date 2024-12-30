@@ -1,3 +1,4 @@
+import "./index.css";
 import "jotai-devtools/styles.css";
 
 import { StrictMode } from "react";
