@@ -27,31 +27,54 @@ export const breadcrumbsAtom = atom((get) => {
 });
 
 // /:game route matching, derived from the location
-export const gameAtom = atom<Game | null>((get) => {
-  const fragments = get(pathFragmentsAtom);
-  const game = fragments[0];
+export const gameAtom = atom<Game | undefined, [Game], void>(
+  (get) => {
+    const fragments = get(pathFragmentsAtom);
+    const game = fragments[0];
 
-  if (game in games) return game as Game;
-  return null;
-});
+    if (game in games) return game as Game;
+  },
+  (get, set, game) => {
+    const subpath = get(subpathAtom);
+
+    // Replace the game portion of the URL.
+    // Invalid paths will be taken care of by the routingEffect.
+    const pathname = subpath ? `/${game}/${subpath}` : `/${game}`;
+    set(locationAtom, { pathname });
+  },
+);
 
 // /:game/:subpath route matching, same as above
-export const subpathAtom = atom<Subpath<Game> | null>((get) => {
-  const game = get(gameAtom);
-  if (!game) return null;
+export const subpathAtom = atom<
+  Subpath<Game> | undefined,
+  [Subpath<Game>],
+  void
+>(
+  (get) => {
+    const game = get(gameAtom);
+    if (!game) return;
 
-  const fragments = get(pathFragmentsAtom);
-  const subpath = fragments[1];
+    const fragments = get(pathFragmentsAtom);
+    const subpath = fragments[1];
 
-  if (subpath in paths[game]) return subpath as Subpath<typeof game>;
-  return null;
-});
+    if (subpath in paths[game]) return subpath as Subpath<typeof game>;
+  },
+  (get, set, subpath) => {
+    const game = get(gameAtom);
+
+    // Replace the subpath portion of the URL.
+    // Invalid paths will be taken care of by the routingEffect.
+    const pathname = subpath ? `/${game}/${subpath}` : `/${game}`;
+    set(locationAtom, { pathname });
+  },
+);
 
 export const routingEffect = atomEffect((get, set) => {
   const game = get(gameAtom);
   const subpath = get(subpathAtom);
 
   // For now, just redirect everything to /hsr/calendar
+  // Eventually, default to '/:game' if no matching subpath exists, or homepage if no matching game exists
   if (!game) set(locationAtom, { pathname: "/hsr/calendar" });
   if (!subpath) set(locationAtom, { pathname: "/hsr/calendar" });
 });
