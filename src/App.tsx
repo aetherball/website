@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 
 import { locationAtom, routingEffect } from "./states/navigation";
 
-import Layout from "./components/Layout";
+import Layout from "./components/layout";
 import HomePage from "./pages/Home";
 import GamePage from "./pages/:game";
 import NotFoundPage from "./pages/NotFound";
