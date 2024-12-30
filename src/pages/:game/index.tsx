@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 
 import { gameAtom, subpathAtom } from "@/states/navigation";
-import CalendarPage from "./Calendar";
+import CalendarPage from "./calendar";
 
 export default function GamePage() {
   const [game] = useAtom(gameAtom);
