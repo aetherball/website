@@ -2,6 +2,7 @@
 import { atom } from "jotai";
 import { atomWithLocation } from "jotai-location";
 import { atomEffect } from "jotai-effect";
+import { games, paths, type Game, type Subpath } from "@/routes";
 
 export const locationAtom = atomWithLocation({
   replace: true,
@@ -26,24 +27,23 @@ export const breadcrumbsAtom = atom((get) => {
 });
 
 // /:game route matching, derived from the location
-export type Game = "hsr" | "zzz";
 export const gameAtom = atom<Game | null>((get) => {
   const fragments = get(pathFragmentsAtom);
-
   const game = fragments[0];
-  if (game === "hsr" || game === "zzz") return game;
 
+  if (game in games) return game as Game;
   return null;
 });
 
 // /:game/:subpath route matching, same as above
-export type Subpath = "calendar";
-export const subpathAtom = atom<Subpath | null>((get) => {
+export const subpathAtom = atom<Subpath<Game> | null>((get) => {
+  const game = get(gameAtom);
+  if (!game) return null;
+
   const fragments = get(pathFragmentsAtom);
-
   const subpath = fragments[1];
-  if (subpath === "calendar") return subpath;
 
+  if (subpath in paths[game]) return subpath as Subpath<typeof game>;
   return null;
 });
 
