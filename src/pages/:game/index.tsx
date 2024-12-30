@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { gameAtom, subpathAtom } from "../../states/navigation";
+import { gameAtom, subpathAtom } from "@/states/navigation";
 import CalendarPage from "./Calendar";
 
 export default function GamePage() {
