@@ -6,7 +6,7 @@ import { Button } from "@chakra-ui/react";
 
 import { CalendarSelectionSchema } from "./schema";
 import { gameAtom } from "@/states/navigation";
-import CalendarSelection from "./selection";
+import CalendarSelection from "./fields/selection";
 
 import type { CalendarSelectionFormData } from "./schema";
 

@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useController } from "react-hook-form";
 import { HStack, CheckboxGroup, Fieldset, Code } from "@chakra-ui/react";
 
-import { Checkbox } from "../components/ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supportedCalendarsAtom } from "@/queries/calendars";
 
 import type { Control } from "react-hook-form";
