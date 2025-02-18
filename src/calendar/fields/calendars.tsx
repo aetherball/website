@@ -31,7 +31,7 @@ export default function CalendarsField({ control }: FieldProps) {
         <Fieldset.Legend>Calendars</Fieldset.Legend>
 
         <Fieldset.Content>
-          <HStack gap="6">
+          <HStack gap="6" align="flex-start">
             {calendars.map((calendar) => (
               <Checkbox key={calendar} value={calendar}>
                 {startCase(calendar)}

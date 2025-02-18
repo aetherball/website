@@ -41,7 +41,7 @@ export default function RegionField({ control }: FieldProps) {
         <Fieldset.Legend>Server Region</Fieldset.Legend>
 
         <Fieldset.Content paddingTop="4">
-          <HStack gap="6">
+          <HStack gap="6" align="flex-start">
             {regions.map(({ region, label }) => (
               <Radio key={region} value={region}>
                 {label}
