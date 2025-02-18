@@ -1,39 +1,58 @@
+import { useCallback } from "react";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { DevTool } from "@hookform/devtools";
-import { Group } from "@chakra-ui/react";
+import { VStack, HStack, Button } from "@chakra-ui/react";
 
-import { CalendarSelectionSchema } from "./schema";
 import { gameAtom } from "@/states/navigation";
+import { calendarSelectionFormDataAtom } from "./state";
+import { CalendarSelectionSchema } from "./schema";
 import CalendarsField from "./fields/calendars";
 import FormatField from "./fields/format";
 import RegionField from "./fields/region";
 
+import type { CalendarSelectionFormData } from "./schema";
+
 export default function CalendarForm() {
   const [game] = useAtom(gameAtom);
+  const [, setData] = useAtom(calendarSelectionFormDataAtom);
 
   const {
+    handleSubmit,
     control,
-    // watch,
-    // formState: { isValid },
+    formState: { isDirty, isSubmitted },
+    reset,
   } = useForm({
-    mode: "onChange",
     resolver: typeboxResolver(CalendarSelectionSchema),
     defaultValues: {
       game: game!,
     },
   });
 
-  return (
-    <>
-      <Group alignItems="flex-start" orientation="horizontal">
-        <CalendarsField control={control} />
-        <RegionField control={control} />
-        <FormatField control={control} />
-      </Group>
+  const onSubmit = useCallback(
+    (data: CalendarSelectionFormData) => {
+      setData(data);
+      reset(data);
+    },
+    [setData, reset],
+  );
 
-      <DevTool control={control} />
-    </>
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <VStack alignItems="flex-start">
+        <HStack alignItems="flex-start">
+          <CalendarsField control={control} />
+          <RegionField control={control} />
+          <FormatField control={control} />
+        </HStack>
+
+        <Button type="submit" disabled={!isDirty}>
+          {isSubmitted ? "Recreate" : "Create"}
+        </Button>
+
+        <DevTool control={control} />
+      </VStack>
+    </form>
   );
 }

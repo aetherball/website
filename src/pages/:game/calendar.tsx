@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { games } from "@/routes";
 import CalendarForm from "@/calendar/form";
+import CalendarLink from "@/calendar/link";
 
 import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
@@ -47,6 +48,7 @@ export default function CalendarPage({ game }: Props) {
           <CalendarForm />
         </Suspense>
       </ErrorBoundary>
+      <CalendarLink />
     </>
   );
 }
