@@ -1,8 +1,14 @@
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { Highlight, Text, Em } from "@chakra-ui/react";
+
 import { Title } from "@/components/layout/title";
 import { Description } from "@/components/layout/description";
 import { CharacterQuote } from "@/components/character/quote";
+import { Skeleton } from "@/components/ui/skeleton";
+
 import { games } from "@/routes";
+import CalendarSelection from "@/components/calendar/selection";
 
 import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
@@ -34,6 +40,11 @@ export default function CalendarPage({ game }: Props) {
           </Text>
         }
       />
+      <ErrorBoundary fallback={<Text>Error loading calendars :(</Text>}>
+        <Suspense fallback={<Skeleton height={5} flex={1} />}>
+          <CalendarSelection />
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }
