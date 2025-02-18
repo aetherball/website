@@ -13,6 +13,7 @@ import CalendarLink from "@/calendar/link";
 
 import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
+import { Provider } from "jotai";
 
 type Props = PropsWithChildren<{ game: Game }>;
 
@@ -24,7 +25,9 @@ const getDescription = (game: Game) =>
 
 export default function CalendarPage({ game }: Props) {
   return (
-    <>
+    // Key a provider by game, so that we do not share state between games.
+    // This is necessary to "reset" the form data and ics link atoms when switching games.
+    <Provider key={game}>
       <Title>
         <Highlight query="Events Calendar" styles={{ color: "teal.solid" }}>
           {getTitle(game)}
@@ -49,6 +52,6 @@ export default function CalendarPage({ game }: Props) {
         </Suspense>
       </ErrorBoundary>
       <CalendarLink />
-    </>
+    </Provider>
   );
 }
