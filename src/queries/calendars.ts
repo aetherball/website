@@ -2,7 +2,7 @@ import { atomWithSuspenseQuery } from "jotai-tanstack-query";
 import startCase from "lodash/startCase";
 
 import { gameAtom } from "@/states/navigation";
-import { HOYOCAL_ENDPOINT } from "./endpoints";
+import { HOYOCAL_ENDPOINT } from "@/constants";
 
 import type { Getter } from "jotai";
 
