@@ -12,7 +12,7 @@ type Props = {
   control: Control<CalendarSelectionFormData>;
 };
 
-export default function CalendarSelection({ control }: Props) {
+export default function CalendarsField({ control }: Props) {
   const [{ data: calendars }] = useAtom(supportedCalendarsAtom);
 
   const form = useController({
