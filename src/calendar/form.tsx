@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { VStack, Button, Box } from "@chakra-ui/react";
 
 import { gameAtom } from "@/states/navigation";
-import { calendarSelectionFormDataAtom } from "./state";
+import { formDataAtomFamily } from "./state";
 import { CalendarSelectionSchema } from "./schema";
 import CalendarsField from "./fields/calendars";
 import FormatField from "./fields/format";
@@ -16,7 +16,7 @@ import type { CalendarSelectionFormData } from "./schema";
 
 export default function CalendarForm() {
   const [game] = useAtom(gameAtom);
-  const [, setData] = useAtom(calendarSelectionFormDataAtom);
+  const [, setData] = useAtom(formDataAtomFamily(game!));
 
   const {
     handleSubmit,
