@@ -41,7 +41,7 @@ export default function CalendarPage({ game }: Props) {
         }
       />
       <ErrorBoundary
-        fallback={<Text color="red">Error loading calendars :/</Text>}
+        fallback={<Text color="red">Something went wrong :/</Text>}
       >
         <Suspense fallback={<Skeleton height={5} flex={1} />}>
           <CalendarForm />
