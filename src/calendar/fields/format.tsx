@@ -1,5 +1,5 @@
 import { useController } from "react-hook-form";
-import { HStack, Field, Text } from "@chakra-ui/react";
+import { Group, Fieldset, Text } from "@chakra-ui/react";
 
 import { RadioCardItem, RadioCardRoot } from "@/components/ui/radio-card";
 import {
@@ -55,30 +55,33 @@ export default function FormatField({ control }: FieldProps) {
   });
 
   return (
-    <Field.Root>
-      <Field.Label>Select Calendar Format</Field.Label>
+    <Fieldset.Root size="lg">
+      <Fieldset.Legend>Select Calendar Format</Fieldset.Legend>
 
       <RadioCardRoot
         value={form.field.value}
         onValueChange={(details) => form.field.onChange(details.value)}
         name={form.field.name}
+        marginTop="0"
       >
-        <HStack align="stretch">
+        <Group attached orientation="vertical" padding="0">
           {formats.map(({ format, label, summary, descriptionLines }) => (
             <HoverCardRoot
               key={format}
-              size="md"
-              openDelay={250}
-              closeDelay={250}
+              openDelay={100}
+              closeDelay={100}
+              positioning={{ placement: "right" }}
             >
-              <HoverCardTrigger asChild>
+              <HoverCardTrigger border="none" asChild>
                 <RadioCardItem
+                  width="full"
+                  indicatorPlacement="start"
                   value={format}
                   label={label}
                   description={summary}
                 />
               </HoverCardTrigger>
-              <HoverCardContent maxWidth="24rem" marginTop="-2">
+              <HoverCardContent maxWidth="24rem">
                 <HoverCardArrow />
                 {descriptionLines.map((line) => (
                   <Text key={line}>{line}</Text>
@@ -86,8 +89,8 @@ export default function FormatField({ control }: FieldProps) {
               </HoverCardContent>
             </HoverCardRoot>
           ))}
-        </HStack>
+        </Group>
       </RadioCardRoot>
-    </Field.Root>
+    </Fieldset.Root>
   );
 }

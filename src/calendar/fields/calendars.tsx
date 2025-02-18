@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useController } from "react-hook-form";
-import { HStack, CheckboxGroup, Fieldset } from "@chakra-ui/react";
+import { CheckboxGroup, Fieldset } from "@chakra-ui/react";
 import startCase from "lodash/startCase";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -20,31 +20,30 @@ export default function CalendarsField({ control }: FieldProps) {
   const invalid = !!form.fieldState.error;
 
   return (
-    <Fieldset.Root invalid={invalid}>
-      <Fieldset.Legend>Select Calendars</Fieldset.Legend>
+    <Fieldset.Root size="lg" invalid={invalid}>
+      <CheckboxGroup
+        invalid={invalid}
+        value={form.field.value}
+        onValueChange={form.field.onChange}
+        name={form.field.name}
+        gap="4"
+      >
+        <Fieldset.Legend>Select Calendars</Fieldset.Legend>
 
-      <Fieldset.Content>
-        <CheckboxGroup
-          invalid={invalid}
-          value={form.field.value}
-          onValueChange={form.field.onChange}
-          name={form.field.name}
-        >
-          <HStack>
-            {calendars.map((calendar) => (
-              <Checkbox key={calendar} value={calendar}>
-                {startCase(calendar)}
-              </Checkbox>
-            ))}
-          </HStack>
-        </CheckboxGroup>
-      </Fieldset.Content>
+        <Fieldset.Content>
+          {calendars.map((calendar) => (
+            <Checkbox key={calendar} value={calendar}>
+              {startCase(calendar)}
+            </Checkbox>
+          ))}
+        </Fieldset.Content>
 
-      {form.fieldState.error && (
-        <Fieldset.ErrorText>
-          You must select at least one calendar.
-        </Fieldset.ErrorText>
-      )}
+        {form.fieldState.error && (
+          <Fieldset.ErrorText>
+            You must select at least one calendar.
+          </Fieldset.ErrorText>
+        )}
+      </CheckboxGroup>
     </Fieldset.Root>
   );
 }

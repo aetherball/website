@@ -1,5 +1,5 @@
 import { useController } from "react-hook-form";
-import { HStack, Field } from "@chakra-ui/react";
+import { Fieldset } from "@chakra-ui/react";
 
 import { Radio, RadioGroup } from "@/components/ui/radio";
 
@@ -32,22 +32,22 @@ export default function RegionField({ control }: FieldProps) {
   });
 
   return (
-    <Field.Root>
-      <Field.Label>Select Server Region</Field.Label>
-
+    <Fieldset.Root size="lg">
       <RadioGroup
         value={form.field.value}
         onValueChange={(details) => form.field.onChange(details.value)}
         name={form.field.name}
       >
-        <HStack gap="6">
+        <Fieldset.Legend>Select Server Region</Fieldset.Legend>
+
+        <Fieldset.Content paddingTop="4">
           {regions.map(({ region, label }) => (
             <Radio key={region} value={region}>
               {label}
             </Radio>
           ))}
-        </HStack>
+        </Fieldset.Content>
       </RadioGroup>
-    </Field.Root>
+    </Fieldset.Root>
   );
 }
