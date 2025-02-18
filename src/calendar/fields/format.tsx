@@ -39,7 +39,7 @@ const formats: {
   {
     format: "point-end",
     label: "Point (End)",
-    summary: "All-day event for the end",
+    summary: "All-day event for the end only",
     descriptionLines: [
       "Each in-game event corresponds to one calendar event, only for the end.",
       "Useful if you just want to track upcoming deadlines.",
@@ -66,7 +66,12 @@ export default function FormatField({ control }: FieldProps) {
       >
         <HStack gap="6" align="flex-start">
           {formats.map(({ format, label, summary, descriptionLines }) => (
-            <HoverCardRoot key={format} openDelay={100} closeDelay={100}>
+            <HoverCardRoot
+              key={format}
+              openDelay={100}
+              closeDelay={100}
+              positioning={{ placement: "top" }} // so that it doesn't get in the way of the button
+            >
               <HoverCardTrigger border="none" asChild>
                 <RadioCardItem
                   indicatorPlacement="start"
