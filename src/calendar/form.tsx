@@ -7,6 +7,7 @@ import { Button } from "@chakra-ui/react";
 import { CalendarSelectionSchema } from "./schema";
 import { gameAtom } from "@/states/navigation";
 import CalendarsField from "./fields/calendars";
+import FormatField from "./fields/format";
 
 import type { CalendarSelectionFormData } from "./schema";
 
@@ -28,6 +29,7 @@ export default function CalendarForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CalendarsField control={control} />
+      <FormatField control={control} />
 
       <Button size="sm" type="submit" alignSelf="flex-start">
         Submit
