@@ -5,14 +5,10 @@ import { HStack, CheckboxGroup, Fieldset, Code } from "@chakra-ui/react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supportedCalendarsAtom } from "@/queries/calendars";
 
-import type { Control } from "react-hook-form";
-import type { CalendarSelectionFormData } from "@/calendar/schema";
+import type { FieldProps } from "../types";
 
-type Props = {
-  control: Control<CalendarSelectionFormData>;
-};
-
-export default function CalendarsField({ control }: Props) {
+export default function CalendarsField({ control }: FieldProps) {
+  // TODO: remove 'code' once done
   const [{ data: calendars }] = useAtom(supportedCalendarsAtom);
 
   const form = useController({
