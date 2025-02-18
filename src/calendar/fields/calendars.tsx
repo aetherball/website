@@ -28,7 +28,7 @@ export default function CalendarsField({ control }: FieldProps) {
         name={form.field.name}
         gap="4"
       >
-        <Fieldset.Legend>Select Calendars</Fieldset.Legend>
+        <Fieldset.Legend>Calendars</Fieldset.Legend>
 
         <Fieldset.Content>
           <HStack gap="6">

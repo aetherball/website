@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { Highlight, Text, Em } from "@chakra-ui/react";
+import { Highlight, Text, Em, Separator } from "@chakra-ui/react";
 
 import { Title } from "@/components/layout/title";
 import { Description } from "@/components/layout/description";
@@ -23,7 +23,6 @@ const getDescription = (game: Game) =>
     : "Keep track of all upcoming limited-time events and endgame content deadlines - right from your calendar!";
 
 export default function CalendarPage({ game }: Props) {
-  // TODO: form for selecting calendars, form for selecting calendar formats, preview calendar, calendar link display
   return (
     <>
       <Title>
@@ -41,6 +40,7 @@ export default function CalendarPage({ game }: Props) {
           </Text>
         }
       />
+      <Separator />
       <ErrorBoundary
         fallback={<Text color="red">Something went wrong :/</Text>}
       >

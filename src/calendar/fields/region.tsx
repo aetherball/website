@@ -38,7 +38,7 @@ export default function RegionField({ control }: FieldProps) {
         onValueChange={(details) => form.field.onChange(details.value)}
         name={form.field.name}
       >
-        <Fieldset.Legend>Select Server Region</Fieldset.Legend>
+        <Fieldset.Legend>Server Region</Fieldset.Legend>
 
         <Fieldset.Content paddingTop="4">
           <HStack gap="6">

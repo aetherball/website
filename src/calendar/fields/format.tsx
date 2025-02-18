@@ -56,7 +56,7 @@ export default function FormatField({ control }: FieldProps) {
 
   return (
     <Fieldset.Root size="lg">
-      <Fieldset.Legend>Select Calendar Format</Fieldset.Legend>
+      <Fieldset.Legend>Event Format</Fieldset.Legend>
 
       <RadioCardRoot
         value={form.field.value}
@@ -64,7 +64,7 @@ export default function FormatField({ control }: FieldProps) {
         name={form.field.name}
         marginTop="0"
       >
-        <HStack gap="6" align="stretch">
+        <HStack gap="6" align="flex-start">
           {formats.map(({ format, label, summary, descriptionLines }) => (
             <HoverCardRoot key={format} openDelay={100} closeDelay={100}>
               <HoverCardTrigger border="none" asChild>

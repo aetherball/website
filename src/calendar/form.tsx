@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { DevTool } from "@hookform/devtools";
-import { VStack, Button } from "@chakra-ui/react";
+import { VStack, Button, Box } from "@chakra-ui/react";
 
 import { gameAtom } from "@/states/navigation";
 import { calendarSelectionFormDataAtom } from "./state";
@@ -39,9 +39,9 @@ export default function CalendarForm() {
   );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Box as="form" onSubmit={handleSubmit(onSubmit)} paddingTop="4">
       <VStack alignItems="flex-start">
-        <VStack alignItems="flex-start" gap="8">
+        <VStack alignItems="flex-start" gap="12">
           <CalendarsField control={control} />
           <RegionField control={control} />
           <FormatField control={control} />
@@ -53,6 +53,6 @@ export default function CalendarForm() {
 
         <DevTool control={control} />
       </VStack>
-    </form>
+    </Box>
   );
 }
