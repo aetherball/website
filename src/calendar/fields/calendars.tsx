@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useController } from "react-hook-form";
-import { HStack, CheckboxGroup, Fieldset, Code } from "@chakra-ui/react";
+import { HStack, CheckboxGroup, Field } from "@chakra-ui/react";
 import startCase from "lodash/startCase";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -9,7 +9,6 @@ import { supportedCalendarsAtom } from "@/queries/calendars";
 import type { FieldProps } from "../types";
 
 export default function CalendarsField({ control }: FieldProps) {
-  // TODO: remove 'code' once done
   const [{ data: calendars }] = useAtom(supportedCalendarsAtom);
 
   const form = useController({
@@ -21,35 +20,29 @@ export default function CalendarsField({ control }: FieldProps) {
   const invalid = !!form.fieldState.error;
 
   return (
-    <Fieldset.Root invalid={invalid}>
-      <Fieldset.Legend fontSize="sm" mb="2">
-        Select Calendars
-      </Fieldset.Legend>
+    <Field.Root invalid={invalid}>
+      <Field.Label>Select Calendars</Field.Label>
 
-      <Fieldset.Content>
-        <CheckboxGroup
-          invalid={invalid}
-          value={form.field.value}
-          onValueChange={form.field.onChange}
-          name={form.field.name}
-        >
-          <HStack>
-            {calendars.map((calendar) => (
-              <Checkbox key={calendar} value={calendar}>
-                {startCase(calendar)}
-              </Checkbox>
-            ))}
-          </HStack>
-        </CheckboxGroup>
-      </Fieldset.Content>
+      <CheckboxGroup
+        invalid={invalid}
+        value={form.field.value}
+        onValueChange={form.field.onChange}
+        name={form.field.name}
+      >
+        <HStack>
+          {calendars.map((calendar) => (
+            <Checkbox key={calendar} value={calendar}>
+              {startCase(calendar)}
+            </Checkbox>
+          ))}
+        </HStack>
+      </CheckboxGroup>
 
       {form.fieldState.error && (
-        <Fieldset.ErrorText>
+        <Field.ErrorText>
           You must select at least one calendar.
-        </Fieldset.ErrorText>
+        </Field.ErrorText>
       )}
-
-      <Code>Values: {JSON.stringify(form.field.value, null, 2)}</Code>
-    </Fieldset.Root>
+    </Field.Root>
   );
 }
