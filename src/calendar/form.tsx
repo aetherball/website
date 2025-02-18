@@ -8,6 +8,7 @@ import { CalendarSelectionSchema } from "./schema";
 import { gameAtom } from "@/states/navigation";
 import CalendarsField from "./fields/calendars";
 import FormatField from "./fields/format";
+import RegionField from "./fields/region";
 
 import type { CalendarSelectionFormData } from "./schema";
 
@@ -30,6 +31,7 @@ export default function CalendarForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <CalendarsField control={control} />
       <FormatField control={control} />
+      <RegionField control={control} />
 
       <Button size="sm" type="submit" alignSelf="flex-start">
         Submit
