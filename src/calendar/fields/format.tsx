@@ -1,11 +1,7 @@
 import { useController } from "react-hook-form";
-import { HStack, Text, Code } from "@chakra-ui/react";
+import { HStack, Fieldset, Text, Code } from "@chakra-ui/react";
 
-import {
-  RadioCardItem,
-  RadioCardLabel,
-  RadioCardRoot,
-} from "@/components/ui/radio-card";
+import { RadioCardItem, RadioCardRoot } from "@/components/ui/radio-card";
 import {
   HoverCardArrow,
   HoverCardContent,
@@ -59,34 +55,43 @@ export default function FormatField({ control }: FieldProps) {
   });
 
   return (
-    <RadioCardRoot
-      value={form.field.value}
-      onValueChange={(details) => form.field.onChange(details.value)}
-      name={form.field.name}
-    >
-      <RadioCardLabel>Select Calendar Format</RadioCardLabel>
+    <Fieldset.Root>
+      <Fieldset.Legend>Select Calendar Format</Fieldset.Legend>
 
-      <HStack>
-        {formats.map(({ format, label, summary, descriptionLines }) => (
-          <HoverCardRoot key={format} size="md" openDelay={250}>
-            <HoverCardTrigger asChild>
-              <RadioCardItem
-                value={format}
-                label={label}
-                description={summary}
-              />
-            </HoverCardTrigger>
-            <HoverCardContent maxWidth="24rem" marginTop="-2">
-              <HoverCardArrow />
-              {descriptionLines.map((line) => (
-                <Text key={line}>{line}</Text>
-              ))}
-            </HoverCardContent>
-          </HoverCardRoot>
-        ))}
-      </HStack>
+      <Fieldset.Content>
+        <RadioCardRoot
+          value={form.field.value}
+          onValueChange={(details) => form.field.onChange(details.value)}
+          name={form.field.name}
+        >
+          <HStack>
+            {formats.map(({ format, label, summary, descriptionLines }) => (
+              <HoverCardRoot
+                key={format}
+                size="md"
+                openDelay={250}
+                closeDelay={250}
+              >
+                <HoverCardTrigger asChild>
+                  <RadioCardItem
+                    value={format}
+                    label={label}
+                    description={summary}
+                  />
+                </HoverCardTrigger>
+                <HoverCardContent maxWidth="24rem" marginTop="-2">
+                  <HoverCardArrow />
+                  {descriptionLines.map((line) => (
+                    <Text key={line}>{line}</Text>
+                  ))}
+                </HoverCardContent>
+              </HoverCardRoot>
+            ))}
+          </HStack>
+        </RadioCardRoot>
+      </Fieldset.Content>
 
       <Code>Values: {JSON.stringify(form.field.value)}</Code>
-    </RadioCardRoot>
+    </Fieldset.Root>
   );
 }
