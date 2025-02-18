@@ -12,8 +12,8 @@ type Props = PropsWithChildren<{ game: Game }>;
 const getTitle = (game: Game) => `${games[game]} Events Calendar`;
 const getDescription = (game: Game) =>
   game === "hsr"
-    ? "Keep track of all the upcoming limited-time events, endgame content, and banners - right from your calendar!"
-    : "Keep track of all the upcoming limited-time events and endgame content deadlines - right from your calendar!";
+    ? "Keep track of all upcoming limited-time events, endgame content, and banners - right from your calendar!"
+    : "Keep track of all upcoming limited-time events and endgame content deadlines - right from your calendar!";
 
 export default function CalendarPage({ game }: Props) {
   // TODO: form for selecting calendars, form for selecting calendar formats, preview calendar, calendar link display
