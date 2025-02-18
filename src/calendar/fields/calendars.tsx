@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { useController } from "react-hook-form";
 import { HStack, CheckboxGroup, Fieldset, Code } from "@chakra-ui/react";
+import startCase from "lodash/startCase";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { supportedCalendarsAtom } from "@/queries/calendars";
@@ -35,7 +36,7 @@ export default function CalendarsField({ control }: FieldProps) {
           <HStack>
             {calendars.map((calendar) => (
               <Checkbox key={calendar} value={calendar}>
-                {calendar}
+                {startCase(calendar)}
               </Checkbox>
             ))}
           </HStack>
