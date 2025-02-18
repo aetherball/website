@@ -1,5 +1,5 @@
 import { useController } from "react-hook-form";
-import { Group, Fieldset, Text } from "@chakra-ui/react";
+import { HStack, Fieldset, Text } from "@chakra-ui/react";
 
 import { RadioCardItem, RadioCardRoot } from "@/components/ui/radio-card";
 import {
@@ -64,17 +64,11 @@ export default function FormatField({ control }: FieldProps) {
         name={form.field.name}
         marginTop="0"
       >
-        <Group attached orientation="vertical" padding="0">
+        <HStack gap="6" align="stretch">
           {formats.map(({ format, label, summary, descriptionLines }) => (
-            <HoverCardRoot
-              key={format}
-              openDelay={100}
-              closeDelay={100}
-              positioning={{ placement: "right" }}
-            >
+            <HoverCardRoot key={format} openDelay={100} closeDelay={100}>
               <HoverCardTrigger border="none" asChild>
                 <RadioCardItem
-                  width="full"
                   indicatorPlacement="start"
                   value={format}
                   label={label}
@@ -89,7 +83,7 @@ export default function FormatField({ control }: FieldProps) {
               </HoverCardContent>
             </HoverCardRoot>
           ))}
-        </Group>
+        </HStack>
       </RadioCardRoot>
     </Fieldset.Root>
   );

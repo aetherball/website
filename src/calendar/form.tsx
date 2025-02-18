@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { DevTool } from "@hookform/devtools";
-import { VStack, HStack, Button } from "@chakra-ui/react";
+import { VStack, Button } from "@chakra-ui/react";
 
 import { gameAtom } from "@/states/navigation";
 import { calendarSelectionFormDataAtom } from "./state";
@@ -41,11 +41,11 @@ export default function CalendarForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <VStack alignItems="flex-start">
-        <HStack alignItems="flex-start">
+        <VStack alignItems="flex-start" gap="8">
           <CalendarsField control={control} />
           <RegionField control={control} />
           <FormatField control={control} />
-        </HStack>
+        </VStack>
 
         <Button type="submit" disabled={!isDirty}>
           {isSubmitted ? "Recreate" : "Create"}
