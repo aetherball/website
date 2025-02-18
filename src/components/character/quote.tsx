@@ -23,6 +23,7 @@ export function CharacterQuote({ character, quote, imgUrl }: Props) {
       }
       showDash
       cite={character}
+      variant="plain"
     >
       {quote}
     </Blockquote>
