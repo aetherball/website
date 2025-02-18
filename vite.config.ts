@@ -7,7 +7,12 @@ export default defineConfig({
   plugins: [
     react({
       babel: {
-        presets: ["jotai/babel/preset"],
+        presets: [
+          [
+            "jotai/babel/preset",
+            { customAtomNames: ["atomWithSuspenseQuery"] },
+          ],
+        ],
       },
     }),
     tsconfigPaths(),
