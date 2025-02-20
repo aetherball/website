@@ -1,19 +1,14 @@
-import { Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import { Highlight, Text, Em, Separator } from "@chakra-ui/react";
 
 import { Title } from "@/components/layout/title";
 import { Description } from "@/components/layout/description";
 import { CharacterQuote } from "@/components/character/quote";
-import { Skeleton } from "@/components/ui/skeleton";
 
 import { games } from "@/routes";
-import CalendarForm from "@/calendar/form";
-import CalendarLink from "@/calendar/link";
+import CalendarPageBody from "@/calendar";
 
 import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
-import { Provider } from "jotai";
 
 type Props = PropsWithChildren<{ game: Game }>;
 
@@ -25,9 +20,7 @@ const getDescription = (game: Game) =>
 
 export default function CalendarPage({ game }: Props) {
   return (
-    // Key a provider by game, so that we do not share state between games.
-    // This is necessary to "reset" the form data and ics link atoms when switching games.
-    <Provider key={game}>
+    <>
       <Title>
         <Highlight query="Events Calendar" styles={{ color: "teal.solid" }}>
           {getTitle(game)}
@@ -44,14 +37,7 @@ export default function CalendarPage({ game }: Props) {
         }
       />
       <Separator />
-      <ErrorBoundary
-        fallback={<Text color="red">Something went wrong :/</Text>}
-      >
-        <Suspense fallback={<Skeleton height={5} flex={1} />}>
-          <CalendarForm />
-        </Suspense>
-      </ErrorBoundary>
-      <CalendarLink />
-    </Provider>
+      <CalendarPageBody game={game} />
+    </>
   );
 }

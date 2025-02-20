@@ -2,14 +2,9 @@ import { atom } from "jotai";
 import { atomFamily } from "jotai/vanilla/utils";
 
 import { HOYOCAL_ENDPOINT } from "@/constants";
+import { formDataAtomFamily } from "../state";
 
 import type { Game } from "@/routes";
-import type { CalendarSelectionFormData } from "./schema";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const formDataAtomFamily = atomFamily((_game: Game) =>
-  atom<CalendarSelectionFormData | undefined>(),
-);
 
 export const icsLinkAtomFamily = atomFamily((game: Game) =>
   atom((get) => {
