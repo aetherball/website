@@ -53,7 +53,7 @@ export default function CalendarForm() {
         </VStack>
 
         <Button type="submit" disabled={!isDirty}>
-          {"Create New Calendar Links"}
+          {"Create New Calendar Link"}
         </Button>
 
         {isSubmitted && !isDirty && <CalendarFormResults />}
