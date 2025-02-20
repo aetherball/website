@@ -8,10 +8,12 @@ import { VStack, Button, Box } from "@chakra-ui/react";
 import { gameAtom } from "@/states/navigation";
 import { formDataAtomFamily } from "./state";
 import { CalendarSelectionSchema } from "./schema";
+
 import CalendarsField from "./fields/calendars";
 import FormatField from "./fields/format";
 import RegionField from "./fields/region";
-import CalendarLink from "./preview";
+
+import CalendarFormResults from "./results";
 
 import type { CalendarSelectionFormData } from "./schema";
 
@@ -52,7 +54,7 @@ export default function CalendarForm() {
           {"Create New Calendar Links"}
         </Button>
 
-        {isSubmitted && !isDirty && <CalendarLink />}
+        {isSubmitted && !isDirty && <CalendarFormResults />}
 
         <DevTool control={control} />
       </VStack>

@@ -1,4 +1,3 @@
-import { useAtom } from "jotai";
 import { VStack } from "@chakra-ui/react";
 
 import {
@@ -10,15 +9,12 @@ import {
 import { InputGroup } from "@/components/ui/input-group";
 
 import { ExternalLinkButton } from "@/components/links/external-link";
-import { gameAtom } from "@/states/navigation";
-import { icsLinkAtomFamily } from "./state";
 
-export default function CalendarLink() {
-  const [game] = useAtom(gameAtom);
-  const [link] = useAtom(icsLinkAtomFamily(game!));
+type Props = {
+  link: string;
+};
 
-  if (!link) return null;
-
+export default function CalendarLinks({ link }: Props) {
   return (
     <>
       <VStack width="max" alignItems="flex-start">
