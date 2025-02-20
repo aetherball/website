@@ -36,6 +36,8 @@ export default function CalendarForm() {
   const onSubmit = useCallback(
     (data: CalendarSelectionFormData) => {
       setData(data);
+
+      // "Reset" the form to the new data, so that only changes to *this* data count as changes in the form.
       reset(data);
     },
     [setData, reset],
