@@ -55,6 +55,10 @@ export default function CalendarForm() {
           {"Create New Calendar Link"}
         </Button>
 
+        {/* Only show the results if we have something that the user has explicitly set
+        (in which case the data is non-empty)
+        and if the user hasn't actively changed the form
+        (in which case it is difficult to reason about 'which' calendars are being shown). */}
         {data && !isDirty && <CalendarFormResults />}
 
         <DevTool control={control} />
