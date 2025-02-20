@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { VStack, Button, Box } from "@chakra-ui/react";
 
 import { gameAtom } from "@/states/navigation";
-import { formDataAtomFamily } from "./state";
+import { formDataAtomFamily, formDataDefaultValuesAtomFamily } from "./state";
 import { CalendarSelectionSchema } from "./schema";
 
 import CalendarsField from "./fields/calendars";
@@ -19,18 +19,17 @@ import type { CalendarSelectionFormData } from "./schema";
 
 export default function CalendarForm() {
   const [game] = useAtom(gameAtom);
-  const [, setData] = useAtom(formDataAtomFamily(game!));
+  const [data, setData] = useAtom(formDataAtomFamily(game!));
+  const [defaultValues] = useAtom(formDataDefaultValuesAtomFamily(game!));
 
   const {
     handleSubmit,
     control,
-    formState: { isDirty, isSubmitted },
+    formState: { isDirty },
     reset,
-  } = useForm({
+  } = useForm<CalendarSelectionFormData>({
     resolver: typeboxResolver(CalendarSelectionSchema),
-    defaultValues: {
-      game: game!,
-    },
+    defaultValues,
   });
 
   const onSubmit = useCallback(
@@ -56,7 +55,7 @@ export default function CalendarForm() {
           {"Create New Calendar Link"}
         </Button>
 
-        {isSubmitted && !isDirty && <CalendarFormResults />}
+        {data && !isDirty && <CalendarFormResults />}
 
         <DevTool control={control} />
       </VStack>

@@ -8,3 +8,10 @@ import type { CalendarSelectionFormData } from "./schema";
 export const formDataAtomFamily = atomFamily((_game: Game) =>
   atom<CalendarSelectionFormData | undefined>(),
 );
+
+export const formDataDefaultValuesAtomFamily = atomFamily((game: Game) =>
+  atom((get) => {
+    const formData = get(formDataAtomFamily(game));
+    return formData ? { ...formData, game } : { game };
+  }),
+);
