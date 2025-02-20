@@ -5,7 +5,6 @@ import { Text } from "@chakra-ui/react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import CalendarForm from "./form";
-import CalendarLink from "./form/preview";
 
 import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
@@ -24,7 +23,6 @@ export default function CalendarPageBody({ game }: Props) {
           <CalendarForm />
         </Suspense>
       </ErrorBoundary>
-      <CalendarLink />
     </Provider>
   );
 }

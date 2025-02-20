@@ -11,6 +11,7 @@ import { CalendarSelectionSchema } from "./schema";
 import CalendarsField from "./fields/calendars";
 import FormatField from "./fields/format";
 import RegionField from "./fields/region";
+import CalendarLink from "./preview";
 
 import type { CalendarSelectionFormData } from "./schema";
 
@@ -48,8 +49,10 @@ export default function CalendarForm() {
         </VStack>
 
         <Button type="submit" disabled={!isDirty}>
-          {isSubmitted ? "Recreate" : "Create"}
+          {"Create New Calendar Links"}
         </Button>
+
+        {isSubmitted && !isDirty && <CalendarLink />}
 
         <DevTool control={control} />
       </VStack>
