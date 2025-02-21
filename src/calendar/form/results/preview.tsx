@@ -46,6 +46,11 @@ export default function CalendarPreview({ link }: CalendarProps) {
         eventContent={CalendarEvent}
         eventBackgroundColor="transparent"
         eventBorderColor="transparent"
+        headerToolbar={{
+          left: "prev,next",
+          center: "title",
+          right: "dayGridWeek,dayGridMonth",
+        }}
       />
     </div>
   );
