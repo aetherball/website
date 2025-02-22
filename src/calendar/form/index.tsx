@@ -2,7 +2,6 @@ import { useCallback } from "react";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
-import { DevTool } from "@hookform/devtools";
 import { VStack, Button, Box } from "@chakra-ui/react";
 
 import { gameAtom } from "@/states/navigation";
@@ -60,8 +59,6 @@ export default function CalendarForm() {
         and if the user hasn't actively changed the form
         (in which case it is difficult to reason about 'which' calendars are being shown). */}
         {data && !isDirty && <CalendarFormResults />}
-
-        <DevTool control={control} />
       </VStack>
     </Box>
   );
