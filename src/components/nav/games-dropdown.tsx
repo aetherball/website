@@ -27,7 +27,7 @@ export function GamesDropdown() {
       value={value}
       onValueChange={setValue}
     >
-      <SelectTrigger>
+      <SelectTrigger borderColor="bg.inverted">
         <SelectValueText placeholder="Select game" />
       </SelectTrigger>
       <SelectContent>
