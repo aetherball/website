@@ -1,4 +1,4 @@
-import { Highlight, Text, Em, Separator } from "@chakra-ui/react";
+import { Text, Em, Separator } from "@chakra-ui/react";
 
 import { Title } from "@/components/layout/title";
 import { Description } from "@/components/layout/description";
@@ -21,10 +21,8 @@ const getDescription = (game: Game) =>
 export default function CalendarPage({ game }: Props) {
   return (
     <>
-      <Title>
-        <Highlight query="Events Calendar" styles={{ color: "teal.solid" }}>
-          {getTitle(game)}
-        </Highlight>
+      <Title query="Events Calendar" styles={{ color: "teal.solid" }}>
+        {getTitle(game)}
       </Title>
       <Description>{getDescription(game)}</Description>
       <CharacterQuote
