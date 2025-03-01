@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { analyzer } from "vite-bundle-analyzer";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 
 // https://vite.dev/config/
@@ -17,9 +18,11 @@ export default defineConfig({
       },
     }),
     tsconfigPaths(),
+    analyzer(),
     sentryVitePlugin({
       org: "janejeon",
       project: "aetherball-frontend",
+      telemetry: false,
     }),
   ],
   build: {
