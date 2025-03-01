@@ -19,11 +19,15 @@ export default defineConfig({
     }),
     tsconfigPaths(),
     analyzer(),
-    sentryVitePlugin({
-      org: "janejeon",
-      project: "aetherball-frontend",
-      telemetry: false,
-    }),
+    ...(process.env.SKIP_SENTRY
+      ? []
+      : [
+          sentryVitePlugin({
+            org: "janejeon",
+            project: "aetherball-frontend",
+            telemetry: false,
+          }),
+        ]),
   ],
   build: {
     sourcemap: true,

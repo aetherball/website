@@ -11,7 +11,7 @@
     "lint:eslint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
-    "analyze": "analyze -p 3457"
+    "analyze": "SKIP_SENTRY=1 analyze --port auto"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.2.3",
@@ -43,6 +43,7 @@
     "@sentry/vite-plugin": "^3.2.1",
     "@tanstack/react-query-devtools": "^5.66.5",
     "@types/lodash": "^4.17.15",
+    "@types/node": "^22.13.8",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
