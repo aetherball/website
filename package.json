@@ -11,10 +11,10 @@
     "lint:eslint": "eslint .",
     "preview": "vite preview",
     "prepare": "husky",
-    "analyze": "SKIP_SENTRY=1 analyze --port auto"
+    "analyze": "SKIP_SENTRY=1 npm run build && open stats.html"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.2.3",
+    "@chakra-ui/react": "^3.8.1",
     "@emotion/react": "^11.14.0",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
@@ -56,10 +56,10 @@
     "lint-staged": "^15.3.0",
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.4.2",
+    "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "~5.7.0",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.1.0",
-    "vite-bundle-analyzer": "^0.17.1",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }

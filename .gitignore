@@ -146,3 +146,6 @@ dist-ssr
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Rollup bundle visualizer
+stats.html
