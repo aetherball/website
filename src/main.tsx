@@ -1,3 +1,5 @@
+import "./instrument.ts";
+
 import "./index.css";
 import "jotai-devtools/styles.css";
 
