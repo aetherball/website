@@ -1,11 +1,14 @@
+import { lazy } from "react";
 import { useAtom } from "jotai";
 
 import { locationAtom, routingEffect } from "./states/navigation";
 
 import Layout from "./components/layout";
-import HomePage from "./pages/Home";
-import GamePage from "./pages/:game";
-import NotFoundPage from "./pages/NotFound";
+import LazyLoad from "./components/layout/lazy-load";
+
+const HomePage = lazy(() => import("./pages/Home"));
+const GamePage = lazy(() => import("./pages/:game"));
+const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
 function App() {
   const [location] = useAtom(locationAtom);
@@ -13,11 +16,20 @@ function App() {
 
   useAtom(routingEffect);
 
-  let body = <GamePage />;
-  if (pathname === "/") body = <HomePage />;
-  if (pathname === "/not-found") body = <NotFoundPage />;
+  const body =
+    pathname === "/" ? (
+      <HomePage />
+    ) : pathname === "/not-found" ? (
+      <NotFoundPage />
+    ) : (
+      <GamePage />
+    );
 
-  return <Layout>{body}</Layout>;
+  return (
+    <Layout>
+      <LazyLoad>{body}</LazyLoad>
+    </Layout>
+  );
 }
 
 export default App;
