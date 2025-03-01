@@ -16,9 +16,11 @@ export default function CalendarFormResults() {
   if (!link) return null;
 
   return (
-    <LazyLoad>
+    <>
       <CalendarLinks link={link} />
-      <CalendarPreview link={link} />
-    </LazyLoad>
+      <LazyLoad>
+        <CalendarPreview link={link} />
+      </LazyLoad>
+    </>
   );
 }
