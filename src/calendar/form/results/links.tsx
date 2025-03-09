@@ -55,7 +55,7 @@ export default function CalendarLinks({ link }: Props) {
             closeDelay={100}
             positioning={{ placement: "top" }}
           >
-            <HoverCardTrigger border="none" asChild>
+            <HoverCardTrigger asChild>
               <ExternalLinkButton to={to(link)} width="56">
                 {label}
               </ExternalLinkButton>
