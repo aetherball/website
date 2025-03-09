@@ -22,7 +22,7 @@ function CalendarEvent(eventInfo: EventProps) {
     <Tooltip content={eventInfo.event.title} openDelay={100} closeDelay={100}>
       <Text
         color="fg"
-        bg="teal.emphasized"
+        bg="teal.muted"
         cursor="pointer"
         textOverflow="ellipsis"
         overflowX="clip"
