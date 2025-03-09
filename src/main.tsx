@@ -20,3 +20,9 @@ createRoot(document.getElementById("root")!).render(
     </ReactQueryProvider>
   </StrictMode>,
 );
+
+// https://vite.dev/guide/build#load-error-handling
+window.addEventListener("vite:preloadError", (e) => {
+  e.preventDefault();
+  window.location.reload(); // for example, refresh the page
+});
