@@ -1,13 +1,13 @@
 import { Button } from "@chakra-ui/react";
 import { LuExternalLink } from "react-icons/lu";
 
-import type { PropsWithChildren } from "react";
+import type { ButtonProps } from "@chakra-ui/react";
 
-type Props = PropsWithChildren<{ to: string }>;
+type Props = Omit<ButtonProps, "asChild"> & { to: string };
 
-export function ExternalLinkButton({ to, children }: Props) {
+export function ExternalLinkButton({ to, children, ...buttonProps }: Props) {
   return (
-    <Button asChild width="100%">
+    <Button asChild {...buttonProps}>
       <a href={to} target="_blank" referrerPolicy="no-referrer">
         {children} <LuExternalLink />
       </a>
