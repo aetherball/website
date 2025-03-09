@@ -25,7 +25,7 @@ export default function Content({
             marginX: "-2",
             marginBottom: "-2",
           })}
-      backgroundColor="bg.panel"
+      backgroundColor="bg.subtle"
       borderColor="border.inverted"
       borderStyle="solid"
       borderWidth="medium"
