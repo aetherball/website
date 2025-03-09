@@ -1,5 +1,5 @@
 import { useController } from "react-hook-form";
-import { HStack, Fieldset, Text } from "@chakra-ui/react";
+import { HStack, Fieldset } from "@chakra-ui/react";
 
 import { RadioCardItem, RadioCardRoot } from "@/components/ui/radio-card";
 import {
@@ -8,6 +8,7 @@ import {
   HoverCardRoot,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import MultilineText from "@/components/text/multiline";
 
 import type { CalendarFormat } from "../schema";
 import type { FieldProps } from "../types";
@@ -16,34 +17,28 @@ const formats: {
   format: CalendarFormat;
   label: string;
   summary: string;
-  descriptionLines: string[];
+  description: string;
 }[] = [
   {
     format: "range",
     label: "Range",
     summary: "Event spans the calendar",
-    descriptionLines: [
-      "Each in-game event corresponds to one calendar event, spanning the entire duration of the in-game event.",
-      "Useful if you want to track what in-game events are ongoing at a given time.",
-    ],
+    description: `Each in-game event corresponds to one calendar event, spanning the entire duration of the in-game event.
+    Useful if you want to track what in-game events are ongoing at a given time.`,
   },
   {
     format: "point",
     label: "Point",
     summary: "All-day events for the start and end",
-    descriptionLines: [
-      "Each in-game event corresponds to two calendar events, one for the start and one for the end.",
-      "Useful if you want to track (and complete) in-game events in a timely manner.",
-    ],
+    description: `Each in-game event corresponds to two calendar events, one for the start and one for the end.
+    Useful if you want to track (and complete) in-game events in a timely manner.`,
   },
   {
     format: "point-end",
     label: "Point (End)",
     summary: "All-day event for the end only",
-    descriptionLines: [
-      "Each in-game event corresponds to one calendar event, only for the end.",
-      "Useful if you just want to track upcoming deadlines.",
-    ],
+    description: `Each in-game event corresponds to one calendar event, only for the end.
+    Useful if you just want to track upcoming deadlines.`,
   },
 ];
 
@@ -65,7 +60,7 @@ export default function FormatField({ control }: FieldProps) {
         marginTop="0"
       >
         <HStack gap="6" align="flex-start">
-          {formats.map(({ format, label, summary, descriptionLines }) => (
+          {formats.map(({ format, label, summary, description }) => (
             <HoverCardRoot
               key={format}
               openDelay={100}
@@ -80,11 +75,10 @@ export default function FormatField({ control }: FieldProps) {
                   description={summary}
                 />
               </HoverCardTrigger>
+
               <HoverCardContent maxWidth="24rem">
                 <HoverCardArrow />
-                {descriptionLines.map((line) => (
-                  <Text key={line}>{line}</Text>
-                ))}
+                <MultilineText text={description} />
               </HoverCardContent>
             </HoverCardRoot>
           ))}
