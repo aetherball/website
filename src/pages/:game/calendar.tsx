@@ -1,4 +1,4 @@
-import { Text, Em, Separator } from "@chakra-ui/react";
+import { Text, Em } from "@chakra-ui/react";
 
 import { Title } from "@/components/layout/title";
 import { Description } from "@/components/layout/description";
@@ -34,7 +34,6 @@ export default function CalendarPage({ game }: Props) {
           </Text>
         }
       />
-      <Separator />
       <CalendarPageBody game={game} />
     </>
   );

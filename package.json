@@ -14,7 +14,7 @@
     "analyze": "SKIP_SENTRY=1 npm run build && open stats.html"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.8.1",
+    "@chakra-ui/react": "^3.11.0",
     "@emotion/react": "^11.14.0",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",

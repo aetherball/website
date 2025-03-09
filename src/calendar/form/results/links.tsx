@@ -7,6 +7,7 @@ import {
   ClipboardRoot,
 } from "@/components/ui/clipboard";
 import { InputGroup } from "@/components/ui/input-group";
+import Content from "@/components/layout/content";
 
 import { ExternalLinkButton } from "@/components/links/external-link";
 
@@ -16,7 +17,7 @@ type Props = {
 
 export default function CalendarLinks({ link }: Props) {
   return (
-    <>
+    <Content title="Calendar Links">
       <VStack width="max" alignItems="flex-start">
         <ExternalLinkButton
           to={`https://calendar.google.com/calendar/r?cid=${link}`}
@@ -39,6 +40,6 @@ export default function CalendarLinks({ link }: Props) {
           <ClipboardInput />
         </InputGroup>
       </ClipboardRoot>
-    </>
+    </Content>
   );
 }

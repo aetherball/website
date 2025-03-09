@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { VStack, Button, Box } from "@chakra-ui/react";
 
+import Content from "@/components/layout/content";
 import { gameAtom } from "@/states/navigation";
 import { formDataAtomFamily, formDataDefaultValuesAtomFamily } from "./state";
 import { CalendarSelectionSchema } from "./schema";
@@ -42,24 +43,26 @@ export default function CalendarForm() {
   );
 
   return (
-    <Box as="form" onSubmit={handleSubmit(onSubmit)} paddingTop="4">
-      <VStack alignItems="flex-start">
-        <VStack alignItems="flex-start" gap="12">
-          <CalendarsField control={control} />
-          <RegionField control={control} />
-          <FormatField control={control} />
+    <Content title="Calendar Options" isTopLevel>
+      <Box as="form" onSubmit={handleSubmit(onSubmit)}>
+        <VStack alignItems="flex-start">
+          <VStack alignItems="flex-start" gap="12">
+            <CalendarsField control={control} />
+            <RegionField control={control} />
+            <FormatField control={control} />
+          </VStack>
+
+          <Button type="submit" disabled={!isDirty}>
+            {"Create New Calendar Link"}
+          </Button>
         </VStack>
+      </Box>
 
-        <Button type="submit" disabled={!isDirty}>
-          {"Create New Calendar Link"}
-        </Button>
-
-        {/* Only show the results if we have something that the user has explicitly set
-        (in which case the data is non-empty)
-        and if the user hasn't actively changed the form
-        (in which case it is difficult to reason about 'which' calendars are being shown). */}
-        {data && !isDirty && <CalendarFormResults />}
-      </VStack>
-    </Box>
+      {/* Only show the results if we have something that the user has explicitly set
+      (in which case the data is non-empty)
+      and if the user hasn't actively changed the form
+      (in which case it is difficult to reason about 'which' calendars are being shown). */}
+      {data && !isDirty && <CalendarFormResults />}
+    </Content>
   );
 }

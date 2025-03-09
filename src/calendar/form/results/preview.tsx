@@ -2,8 +2,9 @@ import FullCalendar from "@fullcalendar/react";
 import iCalendarPlugin from "@fullcalendar/icalendar";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
-import { Text, Box } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
+import Content from "@/components/layout/content";
 import { Tooltip } from "@/components/ui/tooltip";
 
 type CalendarProps = {
@@ -34,7 +35,7 @@ function CalendarEvent(eventInfo: EventProps) {
 
 export default function CalendarPreview({ link }: CalendarProps) {
   return (
-    <Box width="100%" display="block">
+    <Content title="Calendar Preview">
       <FullCalendar
         plugins={[iCalendarPlugin, dayGridPlugin]}
         initialView="dayGridMonth"
@@ -52,6 +53,6 @@ export default function CalendarPreview({ link }: CalendarProps) {
           right: "dayGridWeek,dayGridMonth",
         }}
       />
-    </Box>
+    </Content>
   );
 }
