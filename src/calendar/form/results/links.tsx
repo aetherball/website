@@ -6,6 +6,13 @@ import {
   ClipboardLabel,
   ClipboardRoot,
 } from "@/components/ui/clipboard";
+import {
+  HoverCardArrow,
+  HoverCardContent,
+  HoverCardRoot,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import MultilineText from "@/components/text/multiline";
 import { InputGroup } from "@/components/ui/input-group";
 import Content from "@/components/layout/content";
 
@@ -15,29 +22,51 @@ type Props = {
   link: string;
 };
 
-const BUTTON_SIZE = "56" as const;
+const buttonConfs: {
+  key: string;
+  to: (link: string) => string;
+  label: string;
+  description: string;
+}[] = [
+  {
+    key: "webcal",
+    to: (link) => `webcal://${link}`,
+    label: "Add to Calendar (Default)",
+    description:
+      "Should work for most calendar apps, including Apple Calendar, Microsoft Outlook, Windows 10/11 Calendar, Mozilla Thunderbird, Nextcloud Calendar, and more.",
+  },
+  {
+    key: "gcal-web",
+    to: () => "https://calendar.google.com/calendar/u/0/r/settings/addbyurl",
+    label: "Add to Google Calendar",
+    description: `For Google Calendar users, you will have to add the calendar subscription manually.
+      You should first copy the URL below, and then click this button to paste it in Google Calendar's web interface.`,
+  },
+];
 
 export default function CalendarLinks({ link }: Props) {
   return (
     <Content title="Calendar Links">
       <Wrap gap="2">
-        <ExternalLinkButton
-          to={`https://calendar.google.com/calendar/r?cid=${link}`}
-          width={BUTTON_SIZE}
-        >
-          Add to Google Calendar
-        </ExternalLinkButton>
+        {buttonConfs.map(({ key, to, label, description }) => (
+          <HoverCardRoot
+            key={key}
+            openDelay={100}
+            closeDelay={100}
+            positioning={{ placement: "top" }}
+          >
+            <HoverCardTrigger border="none" asChild>
+              <ExternalLinkButton to={to(link)} width="56">
+                {label}
+              </ExternalLinkButton>
+            </HoverCardTrigger>
 
-        <ExternalLinkButton to={link} width={BUTTON_SIZE}>
-          Add to Apple Calendar
-        </ExternalLinkButton>
-
-        <ExternalLinkButton
-          to={`https://outlook.office.com/calendar/addcalendar?url=${link}&name=CalendarTODO`}
-          width={BUTTON_SIZE}
-        >
-          Add to Outlook
-        </ExternalLinkButton>
+            <HoverCardContent>
+              <HoverCardArrow />
+              <MultilineText text={description} />
+            </HoverCardContent>
+          </HoverCardRoot>
+        ))}
       </Wrap>
 
       <ClipboardRoot maxW="300px" value={link}>
