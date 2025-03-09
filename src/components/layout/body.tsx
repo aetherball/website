@@ -9,7 +9,6 @@ export function Body({ children }: PropsWithChildren<unknown>) {
       width="100%"
       paddingX={16}
       paddingY={8}
-      bg="bg.subtle"
       alignItems="normal"
     >
       {children}

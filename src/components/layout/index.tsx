@@ -1,5 +1,5 @@
 import { NavBar } from "../nav/bar";
-import { Body } from "../ui/body";
+import { Body } from "./body";
 
 import type { PropsWithChildren } from "react";
 
