@@ -45,8 +45,8 @@ export default function CalendarForm() {
   return (
     <Content title="Calendar Options" isTopLevel>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
-        <VStack alignItems="flex-start">
-          <VStack alignItems="flex-start" gap="12">
+        <VStack alignItems="flex-start" gap="8">
+          <VStack alignItems="flex-start" gap="10">
             <CalendarsField control={control} />
             <RegionField control={control} />
             <FormatField control={control} />
