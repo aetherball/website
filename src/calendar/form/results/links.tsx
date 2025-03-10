@@ -1,3 +1,5 @@
+import { Button } from "@chakra-ui/react";
+
 import {
   ClipboardIconButton,
   ClipboardInput,
@@ -10,12 +12,11 @@ import {
   HoverCardRoot,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { InputGroup } from "@/components/ui/input-group";
 import MultilineText from "@/components/text/multiline";
 import ListContainer from "@/components/layout/list-container";
-import { InputGroup } from "@/components/ui/input-group";
 import Content from "@/components/layout/content";
-
-import { ExternalLinkButton } from "@/components/links/external-link";
+import ExternalLink from "@/components/links/external";
 
 type Props = {
   link: string;
@@ -55,9 +56,9 @@ export default function CalendarLinks({ link }: Props) {
             positioning={{ placement: "top" }}
           >
             <HoverCardTrigger asChild>
-              <ExternalLinkButton to={to(link)} whiteSpace="nowrap">
-                {label}
-              </ExternalLinkButton>
+              <Button asChild whiteSpace="nowrap">
+                <ExternalLink to={to(link)}>{label}</ExternalLink>
+              </Button>
             </HoverCardTrigger>
 
             <HoverCardContent>
