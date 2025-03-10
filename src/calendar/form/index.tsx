@@ -6,6 +6,7 @@ import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { Button, Fieldset, Box } from "@chakra-ui/react";
 
 import Content from "@/components/layout/content";
+
 import { gameAtom } from "@/states/navigation";
 import { formDataAtomFamily, formDataDefaultValuesAtomFamily } from "./state";
 import { CalendarSelectionSchema } from "./schema";
@@ -16,12 +17,14 @@ import RegionField from "./fields/region";
 
 import CalendarFormResults from "./results";
 
+import { useAtomStrict } from "@/monads/use-strict";
+
 import type { CalendarSelectionFormData } from "./schema";
 
 export default function CalendarForm() {
-  const [game] = useAtom(gameAtom);
-  const [data, setData] = useAtom(formDataAtomFamily(game!));
-  const [defaultValues] = useAtom(formDataDefaultValuesAtomFamily(game!));
+  const game = useAtomStrict(gameAtom);
+  const [data, setData] = useAtom(formDataAtomFamily(game));
+  const [defaultValues] = useAtom(formDataDefaultValuesAtomFamily(game));
 
   const {
     handleSubmit,
