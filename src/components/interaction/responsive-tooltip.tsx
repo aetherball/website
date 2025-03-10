@@ -13,7 +13,12 @@ export default function ResponsiveTooltip({ children, content }: Props) {
   const isTouchDevice = useMediaQuery("(pointer: coarse)");
 
   return isTouchDevice ? (
-    <ToggleTip content={content} lazyMount unmountOnExit>
+    <ToggleTip
+      content={content}
+      positioning={{ placement: "top" }} // on mobile, the thumb will cover everything below
+      lazyMount
+      unmountOnExit
+    >
       {children}
     </ToggleTip>
   ) : (
