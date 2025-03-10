@@ -1,5 +1,3 @@
-import { Grid } from "@chakra-ui/react";
-
 import {
   ClipboardIconButton,
   ClipboardInput,
@@ -13,6 +11,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import MultilineText from "@/components/text/multiline";
+import ListContainer from "@/components/layout/list-container";
 import { InputGroup } from "@/components/ui/input-group";
 import Content from "@/components/layout/content";
 
@@ -47,11 +46,7 @@ const buttonConfs: {
 export default function CalendarLinks({ link }: Props) {
   return (
     <Content title="Calendar Links">
-      <Grid
-        gap="2"
-        gridTemplateColumns={`repeat(${buttonConfs.length}, 1fr)`}
-        width="max-content"
-      >
+      <ListContainer gap="2">
         {buttonConfs.map(({ key, to, label, description }) => (
           <HoverCardRoot
             key={key}
@@ -71,7 +66,7 @@ export default function CalendarLinks({ link }: Props) {
             </HoverCardContent>
           </HoverCardRoot>
         ))}
-      </Grid>
+      </ListContainer>
 
       <ClipboardRoot maxW="300px" value={link}>
         <ClipboardLabel>Calendar Subscription Link:</ClipboardLabel>

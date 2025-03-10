@@ -1,7 +1,8 @@
 import { useController } from "react-hook-form";
-import { HStack, RadioCard, HoverCard, Portal } from "@chakra-ui/react";
+import { RadioCard, HoverCard, Portal } from "@chakra-ui/react";
 
 import MultilineText from "@/components/text/multiline";
+import ListContainer from "@/components/layout/list-container";
 
 import type { CalendarFormat } from "../schema";
 import type { FieldProps } from "../types";
@@ -83,15 +84,11 @@ export default function FormatField({ control }: FieldProps) {
     >
       <RadioCard.Label>Event Format</RadioCard.Label>
 
-      <HStack
-        display="grid"
-        gridTemplateColumns={`repeat(${formats.length}, 1fr)`}
-        width="max-content"
-      >
+      <ListContainer flexDirection="row" gap="2">
         {formats.map((formatProps) => (
           <FormatDisplay key={formatProps.format} {...formatProps} />
         ))}
-      </HStack>
+      </ListContainer>
     </RadioCard.Root>
   );
 }
