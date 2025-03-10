@@ -7,7 +7,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import { Text } from "@chakra-ui/react";
 
 import Content from "@/components/layout/content";
-import { Tooltip } from "@/components/ui/tooltip";
+import ResponsiveTooltip from "@/components/interaction/responsive-tooltip";
 import { useBreakpointUp } from "@/utils/breakpoint";
 
 type CalendarProps = {
@@ -22,7 +22,7 @@ type EventProps = {
 
 function CalendarEvent(eventInfo: EventProps) {
   return (
-    <Tooltip content={eventInfo.event.title} openDelay={100} closeDelay={100}>
+    <ResponsiveTooltip content={eventInfo.event.title}>
       <Text
         color="fg"
         bg="teal.muted"
@@ -32,7 +32,7 @@ function CalendarEvent(eventInfo: EventProps) {
       >
         {eventInfo.event.title}
       </Text>
-    </Tooltip>
+    </ResponsiveTooltip>
   );
 }
 
