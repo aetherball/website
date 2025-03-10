@@ -11,13 +11,12 @@ import { Text } from "@chakra-ui/react";
 
 import Content from "@/components/layout/content";
 import ResponsiveTooltip from "@/components/interaction/responsive-tooltip";
+import { useAtomStrict } from "@/monads/use-strict";
+import { gameAtom } from "@/states/navigation";
+import { icsLinkAtomFamily } from "./state";
 import { breakpointUpAtomFamily } from "@/states/theme";
 
 import type { EventApi } from "@fullcalendar/core";
-
-type CalendarProps = {
-  link: string;
-};
 
 type EventProps = {
   event: EventApi;
@@ -39,7 +38,10 @@ function CalendarEvent({ event: { title } }: EventProps) {
   );
 }
 
-export default function CalendarPreview({ link }: CalendarProps) {
+export default function CalendarPreview() {
+  const game = useAtomStrict(gameAtom);
+  const link = useAtomStrict(icsLinkAtomFamily(game));
+
   const [lgBreakpoint] = useAtom(breakpointUpAtomFamily("lg"));
   const [mdBreakpoint] = useAtom(breakpointUpAtomFamily("md"));
 

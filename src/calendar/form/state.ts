@@ -3,6 +3,7 @@ import { atomFamily } from "jotai/vanilla/utils";
 
 import { atomFamilyWithStorage } from "@/monads/family-with-storage";
 
+import type { PrimitiveAtom } from "jotai";
 import type { Game } from "@/routes";
 import type { CalendarSelectionFormData } from "./schema";
 
@@ -16,4 +17,8 @@ export const formDataDefaultValuesAtomFamily = atomFamily((game: Game) =>
     const formData = get(formDataAtomFamily(game));
     return formData ? { ...formData, game } : { game };
   }),
+);
+
+export const isFormDirtyAtomFamily = atomFamily<Game, PrimitiveAtom<boolean>>(
+  () => atom(false),
 );

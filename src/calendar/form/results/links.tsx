@@ -18,9 +18,9 @@ import ListContainer from "@/components/layout/list-container";
 import Content from "@/components/layout/content";
 import ExternalLink from "@/components/links/external";
 
-type Props = {
-  link: string;
-};
+import { useAtomStrict } from "@/monads/use-strict";
+import { gameAtom } from "@/states/navigation";
+import { icsLinkAtomFamily } from "./state";
 
 const buttonConfs: {
   key: string;
@@ -44,7 +44,10 @@ const buttonConfs: {
   },
 ];
 
-export default function CalendarLinks({ link }: Props) {
+export default function CalendarLinks() {
+  const game = useAtomStrict(gameAtom);
+  const link = useAtomStrict(icsLinkAtomFamily(game));
+
   return (
     <Content title="Calendar Links">
       <ListContainer gap="2">
