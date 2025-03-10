@@ -1,3 +1,5 @@
+import { useMediaQuery } from "usehooks-ts";
+
 import FullCalendar from "@fullcalendar/react";
 import iCalendarPlugin from "@fullcalendar/icalendar";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -6,6 +8,7 @@ import { Text } from "@chakra-ui/react";
 
 import Content from "@/components/layout/content";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useBreakpointUp } from "@/utils/breakpoint";
 
 type CalendarProps = {
   link: string;
@@ -34,6 +37,10 @@ function CalendarEvent(eventInfo: EventProps) {
 }
 
 export default function CalendarPreview({ link }: CalendarProps) {
+  const mdBreakpoint = useBreakpointUp("md");
+  const isMdOrUp = useMediaQuery(mdBreakpoint);
+  const height = isMdOrUp ? undefined : 800;
+
   return (
     <Content title="Calendar Preview">
       <FullCalendar
@@ -48,10 +55,11 @@ export default function CalendarPreview({ link }: CalendarProps) {
         eventBackgroundColor="transparent"
         eventBorderColor="transparent"
         headerToolbar={{
-          left: "prev,next",
+          left: isMdOrUp ? "prev,next" : undefined,
           center: "title",
           right: "dayGridWeek,dayGridMonth",
         }}
+        height={height}
       />
     </Content>
   );
