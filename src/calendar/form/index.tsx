@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
+// import { DevTool } from "@hookform/devtools";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
 import { VStack, Button, Box } from "@chakra-ui/react";
 
@@ -25,11 +26,12 @@ export default function CalendarForm() {
   const {
     handleSubmit,
     control,
-    formState: { isDirty },
+    formState: { isDirty, isValid },
     reset,
   } = useForm<CalendarSelectionFormData>({
     resolver: typeboxResolver(CalendarSelectionSchema),
     defaultValues,
+    mode: "onChange",
   });
 
   const onSubmit = useCallback(
@@ -52,7 +54,7 @@ export default function CalendarForm() {
             <FormatField control={control} />
           </VStack>
 
-          <Button type="submit" disabled={!isDirty}>
+          <Button type="submit" disabled={!isDirty || !isValid}>
             {"Create New Calendar Link"}
           </Button>
         </VStack>
@@ -63,6 +65,8 @@ export default function CalendarForm() {
       and if the user hasn't actively changed the form
       (in which case it is difficult to reason about 'which' calendars are being shown). */}
       {data && !isDirty && <CalendarFormResults />}
+
+      {/* <DevTool control={control} /> */}
     </Content>
   );
 }
