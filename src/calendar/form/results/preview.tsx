@@ -12,19 +12,19 @@ import Content from "@/components/layout/content";
 import ResponsiveTooltip from "@/components/interaction/responsive-tooltip";
 import { useBreakpointUp } from "@/utils/breakpoint";
 
+import type { EventApi } from "@fullcalendar/core";
+
 type CalendarProps = {
   link: string;
 };
 
 type EventProps = {
-  event: {
-    title: string;
-  };
+  event: EventApi;
 };
 
-function CalendarEvent(eventInfo: EventProps) {
+function CalendarEvent({ event: { title } }: EventProps) {
   return (
-    <ResponsiveTooltip content={eventInfo.event.title}>
+    <ResponsiveTooltip content={title}>
       <Text
         color="fg"
         bg="teal.muted"
@@ -32,7 +32,7 @@ function CalendarEvent(eventInfo: EventProps) {
         textOverflow="ellipsis"
         overflowX="clip"
       >
-        {eventInfo.event.title}
+        {title}
       </Text>
     </ResponsiveTooltip>
   );
