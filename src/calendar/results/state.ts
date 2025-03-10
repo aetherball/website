@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { atomFamily } from "jotai/vanilla/utils";
 
 import { HOYOCAL_ENDPOINT } from "@/constants";
-import { formDataAtomFamily, isFormDirtyAtomFamily } from "../state";
+import { formDataAtomFamily, isFormDirtyAtomFamily } from "../form/state";
 
 import type { Game } from "@/routes";
 

@@ -4,7 +4,7 @@ import { Text } from "@chakra-ui/react";
 import LazyLoad from "@/components/layout/lazy-load";
 import Content from "@/components/layout/content";
 import CalendarForm from "./form";
-import CalendarFormResults from "./form/results";
+import CalendarFormResults from "./results";
 
 import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
