@@ -1,6 +1,7 @@
 import "./fullcalendar.css";
 
 import { useMediaQuery } from "usehooks-ts";
+import { useAtom } from "jotai";
 
 import FullCalendar from "@fullcalendar/react";
 import iCalendarPlugin from "@fullcalendar/icalendar";
@@ -10,7 +11,7 @@ import { Text } from "@chakra-ui/react";
 
 import Content from "@/components/layout/content";
 import ResponsiveTooltip from "@/components/interaction/responsive-tooltip";
-import { useBreakpointUp } from "@/utils/breakpoint";
+import { breakpointUpAtomFamily } from "@/states/theme";
 
 import type { EventApi } from "@fullcalendar/core";
 
@@ -39,8 +40,8 @@ function CalendarEvent({ event: { title } }: EventProps) {
 }
 
 export default function CalendarPreview({ link }: CalendarProps) {
-  const lgBreakpoint = useBreakpointUp("lg");
-  const mdBreakpoint = useBreakpointUp("md");
+  const [lgBreakpoint] = useAtom(breakpointUpAtomFamily("lg"));
+  const [mdBreakpoint] = useAtom(breakpointUpAtomFamily("md"));
 
   const isLgOrUp = useMediaQuery(lgBreakpoint);
   const isMdOrUp = useMediaQuery(mdBreakpoint);

@@ -7,16 +7,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // import { DevTools } from "jotai-devtools";
 import ReactQueryProvider from "./providers/react-query.tsx";
-import { Provider } from "@/components/ui/provider";
+import { ChakraUIProvider } from "./providers/chakra-ui.tsx";
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ReactQueryProvider>
       {/* <DevTools /> */}
-      <Provider>
+      <ChakraUIProvider>
         <App />
-      </Provider>
+      </ChakraUIProvider>
     </ReactQueryProvider>
   </StrictMode>,
 );
