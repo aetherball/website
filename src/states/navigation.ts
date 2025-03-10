@@ -3,7 +3,12 @@ import { atom } from "jotai";
 import { atomWithLocation } from "jotai-location";
 import { atomEffect } from "jotai-effect";
 import { games, paths, type Game, type Subpath } from "@/routes";
-import { getPathname } from "@/utils/pathname";
+
+function getPathname(game?: Game, subpath?: Subpath<Game>) {
+  if (!game) return "/";
+  if (!subpath) return `/${game}`;
+  return `/${game}/${subpath}`;
+}
 
 export const locationAtom = atomWithLocation({
   replace: true,
