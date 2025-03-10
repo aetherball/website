@@ -1,18 +1,27 @@
 import { useEffect } from "react";
 import { Heading, Highlight } from "@chakra-ui/react";
 
-import type { HighlightProps } from "@chakra-ui/react";
+import type { HeadingProps, HighlightProps } from "@chakra-ui/react";
 
-type Props = HighlightProps & { children: string };
+type Props = {
+  children: string;
+} & Omit<HighlightProps, "styles"> &
+  Pick<HeadingProps, "colorPalette">;
 
-export function Title({ children, ...highlightProps }: Props) {
+export default function Title({
+  children: title,
+  colorPalette,
+  ...highlightProps
+}: Props) {
   useEffect(() => {
-    document.title = `Aetherball - ${children}`;
-  }, [children]);
+    document.title = `Aetherball - ${title}`;
+  }, [title]);
 
   return (
-    <Heading as="h1" size="3xl">
-      <Highlight {...highlightProps}>{children}</Highlight>
+    <Heading as="h1" size="3xl" colorPalette={colorPalette}>
+      <Highlight {...highlightProps} styles={{ color: "colorPalette.solid" }}>
+        {title}
+      </Highlight>
     </Heading>
   );
 }
