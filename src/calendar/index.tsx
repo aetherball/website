@@ -5,13 +5,12 @@ import LazyLoad from "@/components/layout/lazy-load";
 import Content from "@/components/layout/content";
 import CalendarForm from "./form";
 import CalendarFormResults from "./results";
+import { useAtomStrict } from "@/monads/use-strict";
+import { gameAtom } from "@/states/navigation";
 
-import type { PropsWithChildren } from "react";
-import type { Game } from "@/routes";
+export default function CalendarPageBody() {
+  const game = useAtomStrict(gameAtom);
 
-type Props = PropsWithChildren<{ game: Game }>;
-
-export default function CalendarPageBody({ game }: Props) {
   return (
     <ErrorBoundary fallback={<Text color="red">Something went wrong :/</Text>}>
       <LazyLoad>

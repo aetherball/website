@@ -12,7 +12,7 @@ export default function GamePage() {
 
   const body =
     !game || !subpath ? null : subpath === "calendar" ? (
-      <CalendarPage game={game} />
+      <CalendarPage />
     ) : (
       "Unknown path"
     );

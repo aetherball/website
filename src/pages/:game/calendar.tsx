@@ -4,12 +4,11 @@ import Meta from "@/components/layout/meta";
 import { CharacterQuote } from "@/components/character/quote";
 
 import { games } from "@/routes";
+import { useAtomStrict } from "@/monads/use-strict";
+import { gameAtom } from "@/states/navigation";
 import CalendarPageBody from "@/calendar";
 
-import type { PropsWithChildren } from "react";
 import type { Game } from "@/routes";
-
-type Props = PropsWithChildren<{ game: Game }>;
 
 const getTitle = (game: Game) => `${games[game]} Events Calendar`;
 const getDescription = (game: Game) =>
@@ -17,7 +16,9 @@ const getDescription = (game: Game) =>
     ? "Keep track of all upcoming limited-time events, endgame content, and banners - right from your calendar!"
     : "Keep track of all upcoming limited-time events and endgame content deadlines - right from your calendar!";
 
-export default function CalendarPage({ game }: Props) {
+export default function CalendarPage() {
+  const game = useAtomStrict(gameAtom);
+
   return (
     <>
       <Meta
@@ -35,7 +36,7 @@ export default function CalendarPage({ game }: Props) {
           </Text>
         }
       />
-      <CalendarPageBody game={game} />
+      <CalendarPageBody />
     </>
   );
 }
