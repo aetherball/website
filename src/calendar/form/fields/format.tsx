@@ -44,7 +44,7 @@ function FormatDisplay({ format, label, summary, description }: FormatProps) {
       closeDelay={100}
       positioning={{ placement: "top" }} // so that it doesn't get in the way of the button
     >
-      <RadioCard.Item value={format} width="60">
+      <RadioCard.Item value={format} whiteSpace="nowrap">
         <RadioCard.ItemHiddenInput />
         <HoverCard.Trigger asChild>
           <RadioCard.ItemControl>
@@ -83,7 +83,11 @@ export default function FormatField({ control }: FieldProps) {
     >
       <RadioCard.Label>Event Format</RadioCard.Label>
 
-      <HStack align="stretch">
+      <HStack
+        display="grid"
+        gridTemplateColumns={`repeat(${formats.length}, 1fr)`}
+        width="max-content"
+      >
         {formats.map((formatProps) => (
           <FormatDisplay key={formatProps.format} {...formatProps} />
         ))}

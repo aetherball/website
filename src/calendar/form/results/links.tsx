@@ -1,4 +1,4 @@
-import { Wrap } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 
 import {
   ClipboardIconButton,
@@ -47,7 +47,11 @@ const buttonConfs: {
 export default function CalendarLinks({ link }: Props) {
   return (
     <Content title="Calendar Links">
-      <Wrap gap="2">
+      <Grid
+        gap="2"
+        gridTemplateColumns={`repeat(${buttonConfs.length}, 1fr)`}
+        width="max-content"
+      >
         {buttonConfs.map(({ key, to, label, description }) => (
           <HoverCardRoot
             key={key}
@@ -56,7 +60,7 @@ export default function CalendarLinks({ link }: Props) {
             positioning={{ placement: "top" }}
           >
             <HoverCardTrigger asChild>
-              <ExternalLinkButton to={to(link)} width="56">
+              <ExternalLinkButton to={to(link)} whiteSpace="nowrap">
                 {label}
               </ExternalLinkButton>
             </HoverCardTrigger>
@@ -67,7 +71,7 @@ export default function CalendarLinks({ link }: Props) {
             </HoverCardContent>
           </HoverCardRoot>
         ))}
-      </Wrap>
+      </Grid>
 
       <ClipboardRoot maxW="300px" value={link}>
         <ClipboardLabel>Calendar Subscription Link:</ClipboardLabel>
