@@ -1,0 +1,11 @@
+.fc-popover-title {
+  color: var(--chakra-colors-fg) !important;
+}
+
+.fc-popover-header {
+  background-color: var(--chakra-colors-bg-emphasized) !important;
+}
+
+.fc-popover {
+  background-color: var(--chakra-colors-bg-subtle) !important;
+}

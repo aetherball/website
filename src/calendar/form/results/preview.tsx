@@ -1,3 +1,5 @@
+import "./fullcalendar.css";
+
 import { useMediaQuery } from "usehooks-ts";
 
 import FullCalendar from "@fullcalendar/react";
