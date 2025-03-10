@@ -1,7 +1,6 @@
 import { Text, Em } from "@chakra-ui/react";
 
-import Title from "@/components/layout/title";
-import Description from "@/components/layout/description";
+import Meta from "@/components/layout/meta";
 import { CharacterQuote } from "@/components/character/quote";
 
 import { games } from "@/routes";
@@ -21,10 +20,12 @@ const getDescription = (game: Game) =>
 export default function CalendarPage({ game }: Props) {
   return (
     <>
-      <Title query="Events Calendar" colorPalette="teal">
-        {getTitle(game)}
-      </Title>
-      <Description>{getDescription(game)}</Description>
+      <Meta
+        title={getTitle(game)}
+        query="Events Calendar"
+        description={getDescription(game)}
+        colorPalette="teal"
+      />
       <CharacterQuote
         character="Dr. Ratio"
         imgUrl="/hsr/stickers/dr-ratio/pillar.webp"
