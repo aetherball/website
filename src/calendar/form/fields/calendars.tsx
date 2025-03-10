@@ -14,7 +14,6 @@ export default function CalendarsField({ control }: FieldProps) {
   const form = useController({
     control,
     name: "calendars",
-    defaultValue: [calendars[0]],
   });
 
   const invalid = !!form.fieldState.error;
@@ -24,7 +23,7 @@ export default function CalendarsField({ control }: FieldProps) {
       <CheckboxGroup
         invalid={invalid}
         value={form.field.value}
-        onValueChange={form.field.onChange}
+        onValueChange={(e) => form.field.onChange(e.sort())}
         name={form.field.name}
         gap="4"
       >
