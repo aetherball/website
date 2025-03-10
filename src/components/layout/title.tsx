@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useDocumentTitle } from "usehooks-ts";
 import { Heading, Highlight } from "@chakra-ui/react";
 
 import type { HeadingProps, HighlightProps } from "@chakra-ui/react";
@@ -13,9 +13,7 @@ export default function Title({
   colorPalette,
   ...highlightProps
 }: Props) {
-  useEffect(() => {
-    document.title = `Aetherball - ${title}`;
-  }, [title]);
+  useDocumentTitle(`Aetherball - ${title}`);
 
   return (
     <Heading as="h1" size="3xl" colorPalette={colorPalette}>

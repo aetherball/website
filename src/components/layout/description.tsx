@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-
+import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import { Text } from "@chakra-ui/react";
 
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
 };
 
 export default function Description({ children: description }: Props) {
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let metaTag = document.querySelector<HTMLMetaElement>(
       "meta[name='description']",
     );

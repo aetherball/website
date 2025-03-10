@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import { Grid } from "@chakra-ui/react";
 
 import type { BoxProps } from "@chakra-ui/react";
@@ -7,7 +8,7 @@ export default function ListContainer({ children, ...boxProps }: BoxProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [childCount, setChildCount] = useState(0);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (containerRef.current) {
       // Count the 'real' number of children rendered underneath this in the DOM.
       setChildCount(containerRef.current.children.length);
