@@ -37,9 +37,11 @@ function CalendarEvent(eventInfo: EventProps) {
 }
 
 export default function CalendarPreview({ link }: CalendarProps) {
+  const lgBreakpoint = useBreakpointUp("lg");
   const mdBreakpoint = useBreakpointUp("md");
+
+  const isLgOrUp = useMediaQuery(lgBreakpoint);
   const isMdOrUp = useMediaQuery(mdBreakpoint);
-  const height = isMdOrUp ? undefined : 800;
 
   return (
     <Content title="Calendar Preview">
@@ -59,7 +61,7 @@ export default function CalendarPreview({ link }: CalendarProps) {
           center: "title",
           right: "dayGridWeek,dayGridMonth",
         }}
-        height={height}
+        height={isLgOrUp ? undefined : 800}
       />
     </Content>
   );
