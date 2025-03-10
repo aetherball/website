@@ -19,17 +19,16 @@ export default function CalendarsField({ control }: FieldProps) {
   const invalid = !!form.fieldState.error;
 
   return (
-    <Fieldset.Root size="lg" invalid={invalid}>
-      <CheckboxGroup
-        invalid={invalid}
-        value={form.field.value}
-        onValueChange={(e) => form.field.onChange(e.sort())}
-        name={form.field.name}
-        gap="4"
-      >
-        <Fieldset.Legend>Calendars</Fieldset.Legend>
+    <Fieldset.Root invalid={invalid}>
+      <Fieldset.Legend>Calendars</Fieldset.Legend>
 
-        <Fieldset.Content>
+      <Fieldset.Content marginTop="1.5">
+        <CheckboxGroup
+          invalid={invalid}
+          value={form.field.value}
+          onValueChange={(e) => form.field.onChange(e.sort())}
+          name={form.field.name}
+        >
           <HStack gap="6" align="flex-start">
             {calendars.map((calendar) => (
               <Checkbox key={calendar} value={calendar}>
@@ -37,14 +36,14 @@ export default function CalendarsField({ control }: FieldProps) {
               </Checkbox>
             ))}
           </HStack>
-        </Fieldset.Content>
+        </CheckboxGroup>
+      </Fieldset.Content>
 
-        {form.fieldState.error && (
-          <Fieldset.ErrorText>
-            You must select at least one calendar.
-          </Fieldset.ErrorText>
-        )}
-      </CheckboxGroup>
+      {form.fieldState.error && (
+        <Fieldset.ErrorText>
+          You must select at least one calendar.
+        </Fieldset.ErrorText>
+      )}
     </Fieldset.Root>
   );
 }

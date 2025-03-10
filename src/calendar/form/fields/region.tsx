@@ -1,7 +1,5 @@
 import { useController } from "react-hook-form";
-import { Fieldset, HStack } from "@chakra-ui/react";
-
-import { Radio, RadioGroup } from "@/components/ui/radio";
+import { HStack, RadioGroup, Fieldset } from "@chakra-ui/react";
 
 import type { CalendarRegion } from "../schema";
 import type { FieldProps } from "../types";
@@ -28,28 +26,29 @@ export default function RegionField({ control }: FieldProps) {
   const form = useController({
     control,
     name: "region",
-    defaultValue: regions[0].region,
   });
 
   return (
-    <Fieldset.Root size="lg">
-      <RadioGroup
-        value={form.field.value}
-        onValueChange={(details) => form.field.onChange(details.value)}
-        name={form.field.name}
-      >
-        <Fieldset.Legend>Server Region</Fieldset.Legend>
+    <Fieldset.Root>
+      <Fieldset.Legend>Server Region</Fieldset.Legend>
 
-        <Fieldset.Content paddingTop="4">
-          <HStack gap="6" align="flex-start">
+      <Fieldset.Content marginTop="1.5">
+        <RadioGroup.Root
+          value={form.field.value}
+          onValueChange={(details) => form.field.onChange(details.value)}
+          name={form.field.name}
+        >
+          <HStack gap="6">
             {regions.map(({ region, label }) => (
-              <Radio key={region} value={region}>
-                {label}
-              </Radio>
+              <RadioGroup.Item key={region} value={region}>
+                <RadioGroup.ItemHiddenInput />
+                <RadioGroup.ItemIndicator />
+                <RadioGroup.ItemText>{label}</RadioGroup.ItemText>
+              </RadioGroup.Item>
             ))}
           </HStack>
-        </Fieldset.Content>
-      </RadioGroup>
+        </RadioGroup.Root>
+      </Fieldset.Content>
     </Fieldset.Root>
   );
 }

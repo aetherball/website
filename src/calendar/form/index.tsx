@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 // import { DevTool } from "@hookform/devtools";
 import { typeboxResolver } from "@hookform/resolvers/typebox";
-import { VStack, Button, Box } from "@chakra-ui/react";
+import { Button, Fieldset } from "@chakra-ui/react";
 
 import Content from "@/components/layout/content";
 import { gameAtom } from "@/states/navigation";
@@ -46,19 +46,26 @@ export default function CalendarForm() {
 
   return (
     <Content title="Calendar Options" isTopLevel>
-      <Box as="form" onSubmit={handleSubmit(onSubmit)}>
-        <VStack alignItems="flex-start" gap="8">
-          <VStack alignItems="flex-start" gap="10">
-            <CalendarsField control={control} />
-            <RegionField control={control} />
-            <FormatField control={control} />
-          </VStack>
+      <Fieldset.Root
+        size="lg"
+        maxW="md"
+        as="form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Fieldset.Content gap="7">
+          <CalendarsField control={control} />
+          <RegionField control={control} />
+          <FormatField control={control} />
+        </Fieldset.Content>
 
-          <Button type="submit" disabled={!isDirty || !isValid}>
-            {"Create New Calendar Link"}
-          </Button>
-        </VStack>
-      </Box>
+        <Button
+          type="submit"
+          alignSelf="flex-start"
+          disabled={!isDirty || !isValid}
+        >
+          {"Create New Calendar Link"}
+        </Button>
+      </Fieldset.Root>
 
       {/* Only show the results if we have something that the user has explicitly set
       (in which case the data is non-empty)

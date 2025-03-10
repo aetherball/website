@@ -1,11 +1,5 @@
 import { useController } from "react-hook-form";
-import {
-  HStack,
-  Fieldset,
-  RadioCard,
-  HoverCard,
-  Portal,
-} from "@chakra-ui/react";
+import { HStack, RadioCard, HoverCard, Portal } from "@chakra-ui/react";
 
 import MultilineText from "@/components/text/multiline";
 
@@ -79,26 +73,21 @@ export default function FormatField({ control }: FieldProps) {
   const form = useController({
     control,
     name: "format",
-    defaultValue: formats[0].format,
   });
 
   return (
-    <Fieldset.Root size="lg">
-      <Fieldset.Legend>Event Format</Fieldset.Legend>
+    <RadioCard.Root
+      value={form.field.value}
+      onValueChange={(details) => form.field.onChange(details.value)}
+      name={form.field.name}
+    >
+      <RadioCard.Label>Event Format</RadioCard.Label>
 
-      <RadioCard.Root
-        value={form.field.value}
-        onValueChange={(details) => form.field.onChange(details.value)}
-        name={form.field.name}
-        marginTop="0"
-        paddingTop="4"
-      >
-        <HStack align="stretch">
-          {formats.map((formatProps) => (
-            <FormatDisplay key={formatProps.format} {...formatProps} />
-          ))}
-        </HStack>
-      </RadioCard.Root>
-    </Fieldset.Root>
+      <HStack align="stretch">
+        {formats.map((formatProps) => (
+          <FormatDisplay key={formatProps.format} {...formatProps} />
+        ))}
+      </HStack>
+    </RadioCard.Root>
   );
 }
