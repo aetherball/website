@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select";
 import { games, type Game } from "@/routes";
 import { gameAtom } from "@/states/navigation";
-import { useAtomForSelect } from "@/monads/select";
+import { useAtomForSelect } from "@/monads/use-select";
 
 const gamesCollection = createListCollection({
   items: Object.entries(games).map(([key, label]) => ({
