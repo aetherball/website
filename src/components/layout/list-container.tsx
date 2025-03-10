@@ -19,7 +19,7 @@ export default function ListContainer({ children, ...boxProps }: BoxProps) {
       {...boxProps}
       ref={containerRef}
       width="max-content"
-      gridTemplateColumns={`repeat(${childCount}, 1fr)`}
+      gridTemplateColumns={{ base: "1fr", md: `repeat(${childCount}, 1fr)` }}
     >
       {children}
     </Grid>
