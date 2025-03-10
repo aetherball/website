@@ -45,7 +45,7 @@ export default function CalendarForm() {
   );
 
   return (
-    <Content title="Calendar Options" isTopLevel>
+    <Content title="Calendar Options" topLevel>
       <Box as="form" width="100%" onSubmit={handleSubmit(onSubmit)}>
         <Fieldset.Root size="lg" maxW="md">
           <Fieldset.Content gap="7">

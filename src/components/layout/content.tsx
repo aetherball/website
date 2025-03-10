@@ -4,22 +4,23 @@ import type { ContainerProps } from "@chakra-ui/react";
 
 type Props = ContainerProps & {
   title: string;
-  isTopLevel?: boolean;
+  topLevel?: boolean;
 };
 
 export default function Content({
   children,
   title,
-  isTopLevel,
+  topLevel,
   ...containerProps
 }: Props) {
   return (
     <Container
       {...containerProps}
-      {...(isTopLevel
+      {...(topLevel
         ? {
             marginX: "0",
             marginBottom: "0",
+            marginTop: "2",
           }
         : {
             marginX: "-2",
