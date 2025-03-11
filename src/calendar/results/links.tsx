@@ -30,7 +30,7 @@ const buttonConfs: {
 }[] = [
   {
     key: "webcal",
-    to: (link) => `webcal://${link}`,
+    to: (link) => link.replace(/^https:\/\//, "webcal://"),
     label: "Add to Calendar (Default)",
     description:
       "Should work for most calendar apps, including Apple Calendar, Microsoft Outlook, Windows 10/11 Calendar, Mozilla Thunderbird, Nextcloud Calendar, and more.",
