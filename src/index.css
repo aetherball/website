@@ -10,3 +10,11 @@ body {
   width: 100%;
   height: 100%;
 }
+
+:root {
+  --navbar-height: var(--chakra-spacing-14);
+}
+
+body {
+  padding-top: var(--navbar-height);
+}

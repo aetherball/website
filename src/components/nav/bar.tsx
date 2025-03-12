@@ -3,7 +3,6 @@ import { Flex } from "@chakra-ui/react";
 import { ColorModeButton } from "../ui/color-mode";
 import { NavigationLinks } from "./links";
 import { Spacer } from "../ui/spacer";
-import { NAVBAR_HEIGHT } from "@/constants";
 
 export function NavBar() {
   return (
@@ -16,7 +15,7 @@ export function NavBar() {
       position="fixed"
       top={0}
       width="100%"
-      height={NAVBAR_HEIGHT}
+      height="var(--navbar-height)"
       zIndex={2}
     >
       <NavigationLinks />
