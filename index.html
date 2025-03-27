@@ -9,8 +9,21 @@
     <script
       defer
       data-domain="aetherball.com"
-      src="https://pl.aetherball.com/js/script.outbound-links.js"
+      src="https://pl.aetherball.com/js/script.manual.js"
     ></script>
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
+    <script>
+      const segments = location.pathname.split("/").filter(Boolean);
+      plausible("pageview", {
+        props: { game: segments[0], page: segments[1] || "home" },
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
