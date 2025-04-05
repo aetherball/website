@@ -15,7 +15,9 @@ export const formDataAtomFamily = atomFamilyWithStorage<
 export const formDataDefaultValuesAtomFamily = atomFamily((game: Game) =>
   atom((get) => {
     const formData = get(formDataAtomFamily(game));
-    return formData ? { ...formData, game } : { game };
+    return formData
+      ? { ...formData, game }
+      : { game, calendars: [], format: undefined, region: undefined };
   }),
 );
 

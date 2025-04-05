@@ -33,7 +33,7 @@ export default function CalendarForm() {
     control,
     formState: { isDirty, isValid },
     reset,
-  } = useForm<CalendarSelectionFormData>({
+  } = useForm({
     resolver: typeboxResolver(CalendarSelectionSchema),
     defaultValues,
     mode: "onChange",
