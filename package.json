@@ -20,7 +20,7 @@
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/icalendar": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
-    "@hookform/resolvers": "^4.1.0",
+    "@hookform/resolvers": "^5.0.0",
     "@sentry/react": "^9.2.0",
     "@sinclair/typebox": "^0.34.25",
     "@tanstack/query-core": "^5.62.9",
