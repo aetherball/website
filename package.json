@@ -41,7 +41,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@hookform/devtools": "^4.3.3",
-    "@sentry/vite-plugin": "^3.2.1",
+    "@sentry/vite-plugin": "^4.0.0",
     "@tanstack/react-query-devtools": "^5.66.5",
     "@types/lodash": "^4.17.15",
     "@types/node": "^22.13.8",
